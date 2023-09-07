@@ -12,14 +12,14 @@ void main() => _bootstrap(App.new);
 Future<void> _bootstrap(
   final Widget Function(VoidCallback) builder,
 ) async {
-  FlutterNativeSplash.preserve(
-    widgetsBinding: WidgetsFlutterBinding.ensureInitialized(),
-  );
-
-  Bloc.observer = AppBlocObserver();
-
   runZonedGuarded<void>(
-    () => runApp(builder(FlutterNativeSplash.remove)),
+    () {
+      FlutterNativeSplash.preserve(
+        widgetsBinding: WidgetsFlutterBinding.ensureInitialized(),
+      );
+      Bloc.observer = AppBlocObserver();
+      runApp(builder(FlutterNativeSplash.remove));
+    },
     (final error, final stack) => log(
       error.toString(),
       stackTrace: stack,

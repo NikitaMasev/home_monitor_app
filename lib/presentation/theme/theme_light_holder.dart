@@ -10,6 +10,7 @@ class ThemeLightHolder implements ThemeHolder {
 
   @override
   ThemeData getTheme() => ThemeData(
+        brightness: Brightness.light,
         visualDensity: VisualDensity.adaptivePlatformDensity,
         scaffoldBackgroundColor: _colorBackground,
         backgroundColor: _colorBackground,

@@ -10,6 +10,7 @@ class ThemeDarkHolder implements ThemeHolder {
 
   @override
   ThemeData getTheme() => ThemeData(
+        brightness: Brightness.dark,
         visualDensity: VisualDensity.adaptivePlatformDensity,
         scaffoldBackgroundColor: _colorBackground,
         backgroundColor: _colorBackground,

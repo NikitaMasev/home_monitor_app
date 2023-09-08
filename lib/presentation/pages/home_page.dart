@@ -24,23 +24,19 @@ class HomePage extends StatelessWidget {
           final colorScheme = Theme.of(context).colorScheme;
           return Scaffold(
             body: child,
-            bottomNavigationBar: BottomNavigationBar(
-              currentIndex: tabsRouter.activeIndex,
-              onTap: tabsRouter.setActiveIndex,
-              items: [
-                BottomNavigationBarItem(
+            bottomNavigationBar: NavigationBar(
+              onDestinationSelected: tabsRouter.setActiveIndex,
+              selectedIndex: tabsRouter.activeIndex,
+              destinations: <Widget>[
+                NavigationDestination(
                   label: 'Устройства',
                   icon: Assets.svg.iot.svg(),
-                  activeIcon: Assets.svg.iotSelected.svg(
-                    color: colorScheme.primary,
-                  ),
+                  selectedIcon: Assets.svg.iotSelected.svg(),
                 ),
-                BottomNavigationBarItem(
+                NavigationDestination(
                   label: 'Уведомления',
                   icon: Assets.svg.bells.svg(),
-                  activeIcon: Assets.svg.bellsSelected.svg(
-                    color: colorScheme.primary,
-                  ),
+                  selectedIcon: Assets.svg.bellsSelected.svg(),
                 ),
               ],
             ),

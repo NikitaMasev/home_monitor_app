@@ -27,6 +27,7 @@ class HomePage extends StatelessWidget {
             bottomNavigationBar: NavigationBar(
               onDestinationSelected: tabsRouter.setActiveIndex,
               selectedIndex: tabsRouter.activeIndex,
+              height: 70,
               destinations: <Widget>[
                 NavigationDestination(
                   label: 'Устройства',

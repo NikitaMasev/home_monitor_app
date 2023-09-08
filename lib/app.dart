@@ -3,6 +3,7 @@ import 'package:home_monitor/di/configurator_scope.dart';
 import 'package:home_monitor/di/models/environments.dart';
 import 'package:home_monitor/di/theme_scope.dart';
 import 'package:home_monitor/internal/router/app_router.dart';
+import 'package:home_monitor/presentation/scroll_non_stretching.dart';
 import 'package:theme_provider/theme_provider.dart';
 
 class App extends StatelessWidget {
@@ -21,6 +22,7 @@ class App extends StatelessWidget {
               logger: true,
               initialized: initializedConfig,
               child: MaterialApp.router(
+                scrollBehavior: ScrollNonStretching(),
                 title: 'Home monitor',
                 routerConfig: _appRouter.config(),
 /*                routerDelegate: _appRouter.delegate(),

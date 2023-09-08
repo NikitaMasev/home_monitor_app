@@ -14,15 +14,22 @@ import 'package:flutter/services.dart';
 class $AssetsSvgGen {
   const $AssetsSvgGen();
 
+  /// File path: assets/svg/bells.svg
+  SvgGenImage get bells => const SvgGenImage('assets/svg/bells.svg');
+
+  /// File path: assets/svg/bells_selected.svg
+  SvgGenImage get bellsSelected =>
+      const SvgGenImage('assets/svg/bells_selected.svg');
+
   /// File path: assets/svg/iot.svg
   SvgGenImage get iot => const SvgGenImage('assets/svg/iot.svg');
 
-  /// File path: assets/svg/notifications.svg
-  SvgGenImage get notifications =>
-      const SvgGenImage('assets/svg/notifications.svg');
+  /// File path: assets/svg/iot_selected.svg
+  SvgGenImage get iotSelected =>
+      const SvgGenImage('assets/svg/iot_selected.svg');
 
   /// List of all assets
-  List<SvgGenImage> get values => [iot, notifications];
+  List<SvgGenImage> get values => [bells, bellsSelected, iot, iotSelected];
 }
 
 class Assets {

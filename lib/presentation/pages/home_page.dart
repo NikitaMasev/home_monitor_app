@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:home_monitor/internal/router/app_router.dart';
 import 'package:home_monitor/presentation/assets_paths/assets.gen.dart';
 
@@ -20,6 +21,7 @@ class HomePage extends StatelessWidget {
         ),
         builder: (final context, final child) {
           final tabsRouter = AutoTabsRouter.of(context);
+          final colorScheme = Theme.of(context).colorScheme;
           return Scaffold(
             body: child,
             bottomNavigationBar: BottomNavigationBar(
@@ -29,10 +31,16 @@ class HomePage extends StatelessWidget {
                 BottomNavigationBarItem(
                   label: 'Устройства',
                   icon: Assets.svg.iot.svg(),
+                  activeIcon: Assets.svg.iotSelected.svg(
+                    color: colorScheme.primary,
+                  ),
                 ),
                 BottomNavigationBarItem(
                   label: 'Уведомления',
-                  icon: Assets.svg.notifications.svg(),
+                  icon: Assets.svg.bells.svg(),
+                  activeIcon: Assets.svg.bellsSelected.svg(
+                    color: colorScheme.primary,
+                  ),
                 ),
               ],
             ),
@@ -41,13 +49,4 @@ class HomePage extends StatelessWidget {
       );
 }
 
-// CircularBottomNavigation(
-// [
-// TabItem(Icons.ad_units, 'Устройства', Colors.red),
-// TabItem(Icons.notification_add_outlined, 'Уведомления', Colors.red),
-// ],
-// selectedCallback: (final index) => tabsRouter.setActiveIndex(
-// index ?? 0,
-// ),
-// selectedPos: tabsRouter.activeIndex,
-// ),
+

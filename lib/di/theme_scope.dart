@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:home_monitor/presentation/theme/theme_factory.dart';
@@ -32,8 +34,10 @@ class ThemeScope extends StatelessWidget {
         final platformBrightness =
             SchedulerBinding.instance.window.platformBrightness;
         if (platformBrightness == Brightness.dark) {
+          log('onInitCallback DARK');
           controller.setTheme(themeDark.themeId);
         } else {
+          log('onInitCallback LIGHT');
           controller.setTheme(themeLight.themeId);
         }
       },

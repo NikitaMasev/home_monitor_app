@@ -7,12 +7,11 @@ class DevicesPage extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
+    print('DevicesPage BUILD');
     return Scaffold(
+      //backgroundColor: Colors.black.withOpacity(0.9),
       body: Column(
         children: [
-          Center(
-            child: CircularProgressIndicator(),
-          ),
           ElevatedButton(
             onPressed: () {
               context.tabsRouter.setActiveIndex(1);

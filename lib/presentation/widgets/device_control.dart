@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:home_monitor/presentation/assets_paths/assets.gen.dart';
 import 'package:iot_models/iot_models.dart';
 
 class DeviceControl extends StatelessWidget {
@@ -18,10 +19,7 @@ class DeviceControl extends StatelessWidget {
             padding: EdgeInsets.only(left: 16, right: 16),
             child: Text(iotDevice.name ?? 'NONAME', maxLines: 1,),
           ),
-          Icon(
-            Icons.access_time,
-            size: 48,
-          ),
+          Assets.svg.lamp.svg(width: 46),
           Switch(
             value: false,
             onChanged: (final val) {},

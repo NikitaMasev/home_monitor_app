@@ -14,12 +14,21 @@ import 'package:flutter/services.dart';
 class $AssetsSvgGen {
   const $AssetsSvgGen();
 
+  /// File path: assets/svg/battery.svg
+  SvgGenImage get battery => const SvgGenImage('assets/svg/battery.svg');
+
   /// File path: assets/svg/bells.svg
   SvgGenImage get bells => const SvgGenImage('assets/svg/bells.svg');
 
   /// File path: assets/svg/bells_selected.svg
   SvgGenImage get bellsSelected =>
       const SvgGenImage('assets/svg/bells_selected.svg');
+
+  /// File path: assets/svg/brightness.svg
+  SvgGenImage get brightness => const SvgGenImage('assets/svg/brightness.svg');
+
+  /// File path: assets/svg/car_battery.svg
+  SvgGenImage get carBattery => const SvgGenImage('assets/svg/car_battery.svg');
 
   /// File path: assets/svg/iot.svg
   SvgGenImage get iot => const SvgGenImage('assets/svg/iot.svg');
@@ -28,8 +37,24 @@ class $AssetsSvgGen {
   SvgGenImage get iotSelected =>
       const SvgGenImage('assets/svg/iot_selected.svg');
 
+  /// File path: assets/svg/lamp.svg
+  SvgGenImage get lamp => const SvgGenImage('assets/svg/lamp.svg');
+
+  /// File path: assets/svg/led.svg
+  SvgGenImage get led => const SvgGenImage('assets/svg/led.svg');
+
   /// List of all assets
-  List<SvgGenImage> get values => [bells, bellsSelected, iot, iotSelected];
+  List<SvgGenImage> get values => [
+        battery,
+        bells,
+        bellsSelected,
+        brightness,
+        carBattery,
+        iot,
+        iotSelected,
+        lamp,
+        led
+      ];
 }
 
 class Assets {

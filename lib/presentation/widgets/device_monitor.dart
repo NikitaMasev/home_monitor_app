@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:home_monitor/presentation/assets_paths/assets.gen.dart';
 import 'package:iot_models/iot_models.dart';
 
 
@@ -19,10 +20,7 @@ class DeviceMonitor extends StatelessWidget {
             padding: EdgeInsets.only(left: 16, right: 16),
             child: Text(iotDevice.name ?? 'NONAME', maxLines: 1,),
           ),
-          Icon(
-            Icons.battery_4_bar_sharp,
-            size: 48,
-          ),
+          Assets.svg.battery.svg(width: 46),
           Text('DC:37C Bat:30C Cap:84%'),
         ],
       ),

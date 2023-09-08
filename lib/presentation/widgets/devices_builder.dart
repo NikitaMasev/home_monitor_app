@@ -39,7 +39,6 @@ class DevicesBuilder extends StatelessWidget {
                 SizedBox(
                   height: 130,
                   child: ListView.builder(
-                    physics: ScrollPhysics(),
                     scrollDirection: Axis.horizontal,
                     shrinkWrap: true,
                     itemCount: devicesControl.length,

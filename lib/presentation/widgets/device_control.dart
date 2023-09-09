@@ -12,22 +12,26 @@ class DeviceControl extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      child: Column(
-        children: [
-          Padding(
-            padding: EdgeInsets.only(left: 16, right: 16),
-            child: Text(iotDevice.name ?? 'NONAME', maxLines: 1,),
-          ),
-          Assets.svg.lamp.svg(width: 46),
-          Switch(
-            value: false,
-            onChanged: (final val) {},
-          ),
-        ],
+    return SizedBox(
+      width: 130,
+      height: 130,
+      child: Card(
+        child: Column(
+          children: [
+            Padding(
+              padding: EdgeInsets.only(left: 8, right: 8, top: 4),
+              child: Text(iotDevice.name ?? 'NONAME', maxLines: 1,),
+            ),
+            Assets.svg.lamp.svg(width: 46),
+            Switch(
+              value: false,
+              onChanged: (final val) {},
+            ),
+          ],
+        ),
+        color: Theme.of(context).colorScheme.surfaceVariant,
+        elevation: 0,
       ),
-      color: Theme.of(context).colorScheme.surfaceVariant,
-      elevation: 0,
     );
   }
 }

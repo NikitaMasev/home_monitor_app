@@ -43,6 +43,10 @@ class $AssetsSvgGen {
   /// File path: assets/svg/led.svg
   SvgGenImage get led => const SvgGenImage('assets/svg/led.svg');
 
+  /// File path: assets/svg/thermometer.svg
+  SvgGenImage get thermometer =>
+      const SvgGenImage('assets/svg/thermometer.svg');
+
   /// List of all assets
   List<SvgGenImage> get values => [
         battery,
@@ -53,7 +57,8 @@ class $AssetsSvgGen {
         iot,
         iotSelected,
         lamp,
-        led
+        led,
+        thermometer
       ];
 }
 

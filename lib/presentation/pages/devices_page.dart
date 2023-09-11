@@ -14,13 +14,18 @@ final  _devicesTest = <IotDevice>[
   //IotDevice(id: 6, typeDevice: TypeDevice.unknown),
 ];
 
-const _devicesMonitorTest = <IotDevice>[
-  IotDevice(id: 0, typeDevice: TypeDevice.ups, name: 'UPS for router 1'),
+final _devicesMonitorTest = <IotDevice>[
+  IotDevice(id: 0, typeDevice: TypeDevice.tempSensor, name: 'UPS for router 1'),
   IotDevice(id: 1, typeDevice: TypeDevice.tempSensor, name: 'Sensor Room 2'),
-  IotDevice(id: 2, typeDevice: TypeDevice.ups, name: 'UPS for router 2'),
-  IotDevice(id: 3, typeDevice: TypeDevice.tempSensor, name: 'Sensor Room 1'),
-  IotDevice(id: 4, typeDevice: TypeDevice.tempSensor, name: 'Sensor Room 1'),
-  IotDevice(id: 5, typeDevice: TypeDevice.tempSensor, name: 'Sensor Room 4'),
+  IotDevice(id: 2, typeDevice: TypeDevice.tempSensor, name: 'UPS for router 2'),
+  IotDevice(id: 3, typeDevice: TypeDevice.ups, name: 'UPS for router 1', data: UpsData(tempUps: 23.354, tempAcc: 37.6565, pwmCooler: 0, currentDC: 1582.5, voltageDC: 12.35)),
+  IotDevice(id: 4, typeDevice: TypeDevice.ups, name: 'UPS for router 2', data: UpsData(tempUps: 23.354, tempAcc: 37.6565, pwmCooler: 0, currentDC: 1582.5, voltageDC: 12.35)),
+  IotDevice(id: 5, typeDevice: TypeDevice.ups, name: 'UPS for router 5', data: UpsData(tempUps: 23.354, tempAcc: 37.6565, pwmCooler: 0, currentDC: 1582.5, voltageDC: 12.35)),
+  IotDevice(id: 6, typeDevice: TypeDevice.ups, name: 'UPS for router 3', data: UpsData(tempUps: 23.354, tempAcc: 37.6565, pwmCooler: 0, currentDC: 1582.5, voltageDC: 12.35)),
+  IotDevice(id: 7, typeDevice: TypeDevice.ups, name: 'UPS for router 1', data: UpsData(tempUps: 23.354, tempAcc: 37.6565, pwmCooler: 0, currentDC: 1582.5, voltageDC: 12.35)),
+  IotDevice(id: 8, typeDevice: TypeDevice.ups, name: 'UPS for router 2', data: UpsData(tempUps: 23.354, tempAcc: 37.6565, pwmCooler: 0, currentDC: 1582.5, voltageDC: 12.35)),
+  IotDevice(id: 9, typeDevice: TypeDevice.ups, name: 'UPS for router 5', data: UpsData(tempUps: 23.354, tempAcc: 37.6565, pwmCooler: 0, currentDC: 1582.5, voltageDC: 12.35)),
+  IotDevice(id: 10, typeDevice: TypeDevice.ups, name: 'UPS for router 3', data: UpsData(tempUps: 23.354, tempAcc: 37.6565, pwmCooler: 0, currentDC: 1582.5, voltageDC: 12.35)),
   //IotDevice(id: 6, typeDevice: TypeDevice.unknown),
 ];
 

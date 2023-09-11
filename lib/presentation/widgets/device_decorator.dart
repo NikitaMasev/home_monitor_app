@@ -16,7 +16,6 @@ class DeviceDecorator extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) => Card(
-        margin: EdgeInsets.zero,
         color: Theme.of(context).colorScheme.surfaceVariant,
         elevation: 0,
         child: switch (iotDevice.typeDevice) {

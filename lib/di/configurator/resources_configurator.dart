@@ -1,7 +1,9 @@
 import 'package:home_monitor/di/configurator/data_sources_configurator.dart';
 import 'package:home_monitor/di/configurator/repositories_creator.dart';
 import 'package:home_monitor/di/models/environments.dart';
+import 'package:home_monitor/di/models/repositories.dart';
 import 'package:home_monitor/di/models/resources.dart';
+import 'package:home_monitor/internal/platform/name_device_extractor.dart';
 
 class ResourcesConfigurator {
   ResourcesConfigurator({
@@ -16,12 +18,16 @@ class ResourcesConfigurator {
   Future<Resources> getResources() async {
     final dataSources = await DataSourcesConfigurator(_env).getDataSources();
     final repositoriesCreator = RepositoriesCreator(dataSources, _env);
+    final userRepo = await repositoriesCreator.userRepository();
+
+    final nameDevice = await NameDeviceExtractor().getName();
 
     return Resources(
-      repositoriesCreator: repositoriesCreator,
+      repositories: Repositories(userRepository: userRepo),
       dataSources: dataSources,
       env: _env,
       logger: _logger,
+      nameDevice: nameDevice,
     );
   }
 }

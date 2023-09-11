@@ -30,6 +30,9 @@ dependencies:
   #DI
   provider: ^6.0.5
 
+  #Utils
+  device_info_plus: ^9.0.3
+
 dev_dependencies:
   flutter_lints: ^2.0.3
   auto_route_generator: ^7.3.1

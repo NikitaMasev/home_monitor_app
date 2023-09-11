@@ -4,15 +4,14 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:home_monitor/internal/router/app_router.dart';
 import 'package:home_monitor/presentation/models/splash_state.dart';
+import 'package:home_monitor/presentation/widgets/loaders/loading_status.dart';
 import 'package:iot_client_starter/iot_client_starter.dart';
+import 'package:provider/provider.dart';
 
 class SplashComponent extends StatefulWidget {
   const SplashComponent({
-    required this.channelStateWatcher,
     final Key? key,
   }) : super(key: key);
-
-  final ChannelStateWatcher channelStateWatcher;
 
   @override
   State<SplashComponent> createState() => _SplashComponentState();
@@ -21,11 +20,14 @@ class SplashComponent extends StatefulWidget {
 class _SplashComponentState extends State<SplashComponent> {
   final _controllerSplashState = StreamController<SplashState>();
   late final StreamSubscription _subChannelState;
+  late final ChannelStateWatcher _channelStateWatcher;
 
   @override
   void initState() {
+    _channelStateWatcher = context.read<ChannelStateWatcher>();
+
     _subChannelState =
-        widget.channelStateWatcher.watchState().listen((final channelState) {
+        _channelStateWatcher.watchState().listen((final channelState) {
       switch (channelState) {
         case ChannelInitial():
           break;
@@ -65,71 +67,24 @@ class _SplashComponentState extends State<SplashComponent> {
         stream: _controllerSplashState.stream,
         initialData: SplashInitial(),
         builder: (final ctx, final snap) => switch (snap.data!) {
-          SplashInitial() => Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                const Center(
-                  child: CircularProgressIndicator(),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 16),
-                  child: Text(
-                    'Инициализация...',
-                    style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-                          color: Theme.of(context).colorScheme.outline,
-                        ),
+          SplashInitial() => LoadingStatus(
+              text: 'Инициализация...',
+              textStyle: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                    color: Theme.of(context).colorScheme.outline,
                   ),
-                ),
-              ],
             ),
-          SplashLoading() => Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                const Center(
-                  child: CircularProgressIndicator(),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 16),
-                  child: Text(
-                    'Загрузка...',
-                    style: Theme.of(context).textTheme.bodyLarge,
+          SplashLoading() => const LoadingStatus(text: 'Загрузка...'),
+          SplashError() => LoadingStatus(
+              text: (snap.data! as SplashError).error,
+              textStyle: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                    color: Theme.of(context).colorScheme.error,
                   ),
-                ),
-              ],
             ),
-          SplashError() => Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(top: 16),
-                  child: Center(
-                    child: Text(
-                      (snap.data! as SplashError).error,
-                      textAlign: TextAlign.center,
-                      style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-                            color: Theme.of(context).colorScheme.error,
-                          ),
-                    ),
+          SplashSuccess() => LoadingStatus(
+              text: 'Подключение успешно!',
+              textStyle: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                    color: Theme.of(context).colorScheme.surfaceTint,
                   ),
-                ),
-              ],
-            ),
-          SplashSuccess() => Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(top: 16),
-                  child: Center(
-                    child: Text(
-                      'Подключение успешно!',
-                      textAlign: TextAlign.center,
-                      style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-                            color: Theme.of(context).colorScheme.surfaceTint,
-                          ),
-                    ),
-                  ),
-                ),
-              ],
             ),
         },
       );

@@ -13,7 +13,7 @@ class NetworkConfigurator {
   ) =>
       configCommunicator(iotChannelProvider);
 
-  Future<(IotChannelProvider, ChannelStateWatcher)>
+  Future<(IotChannelProvider, ChannelStateWatcher, Runnable)>
       getChannelProviderAndStateWatcher() => switch (_env) {
             Env.stage => configChannelProvider(
                 ipClients: _getIp(),
@@ -38,10 +38,10 @@ class NetworkConfigurator {
           };
 
   String _getIp() => switch (_env) {
-        Env.stage => 'ws://192.168.50.143',
-        Env.prod => 'ws://192.168.50.143',
-        Env.dev => 'ws://192.168.50.143',
-        Env.test => 'ws://localhost',
+        Env.stage => '192.168.50.143',
+        Env.prod => '192.168.50.143',
+        Env.dev => '192.168.50.143',
+        Env.test => 'localhost',
       };
 
   String _getPort() => switch (_env) {

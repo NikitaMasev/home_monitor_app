@@ -39,7 +39,7 @@ class _AuthComponentState extends State<AuthComponent> {
         },
         error: (final err) => _controllerAuthStateUi.add(
           AuthStateUiError(
-            err: err.toString(),
+            err: err.err,
           ),
         ),
       ),

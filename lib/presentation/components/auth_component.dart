@@ -2,16 +2,20 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:home_monitor/presentation/models/auth_state_ui.dart';
+import 'package:home_monitor/presentation/models/loader_state.dart';
+import 'package:home_monitor/presentation/widgets/loaders/loader_entity.dart';
 import 'package:iot_client_starter/iot_client_starter.dart';
 import 'package:provider/provider.dart';
 
 class AuthComponent extends StatefulWidget {
   const AuthComponent({
-    required this.onSuccess,
+    this.onSuccess,
+    this.childIfSuccess,
     final Key? key,
   }) : super(key: key);
 
-  final VoidCallback onSuccess;
+  final VoidCallback? onSuccess;
+  final Widget? childIfSuccess;
 
   @override
   State<AuthComponent> createState() => _AuthComponentState();
@@ -29,7 +33,10 @@ class _AuthComponentState extends State<AuthComponent> {
       (final state) => state.when(
         initial: () => _controllerAuthStateUi.add(AuthStateUiInitial()),
         loading: () => _controllerAuthStateUi.add(AuthStateUiLoading()),
-        success: () => _controllerAuthStateUi.add(AuthStateUiSuccess()),
+        success: () {
+          _controllerAuthStateUi.add(AuthStateUiSuccess());
+          widget.onSuccess?.call();
+        },
         error: (final err) => _controllerAuthStateUi.add(
           AuthStateUiError(
             err: err.toString(),
@@ -37,6 +44,7 @@ class _AuthComponentState extends State<AuthComponent> {
         ),
       ),
     );
+    _authBloc.add(const AuthEvent.start());
     super.initState();
   }
 
@@ -47,18 +55,17 @@ class _AuthComponentState extends State<AuthComponent> {
   }
 
   @override
-  Widget build(final BuildContext context) => StreamBuilder<AuthStateUi>(
-        stream: _controllerAuthStateUi.stream,
-        initialData: AuthStateUiInitial(),
-        builder: (final ctx, final snap)=>switch(snap.data!){
-          // TODO: Handle this case.
-          AuthStateUiInitial() => null,
-          // TODO: Handle this case.
-          AuthStateUiLoading() => null,
-          // TODO: Handle this case.
-          AuthStateUiError() => null,
-          // TODO: Handle this case.
-          AuthStateUiSuccess() => null,
-        },
+  Widget build(final BuildContext context) => Scaffold(
+        body: LoaderEntity(
+          childIfSuccess: widget.childIfSuccess,
+          stream: _controllerAuthStateUi.stream.map(
+            (final uiState) => switch (uiState) {
+              AuthStateUiInitial() => LoaderStateInitial(),
+              AuthStateUiLoading() => LoaderStateLoading(),
+              AuthStateUiError() => LoaderStateError(err: uiState.err),
+              AuthStateUiSuccess() => LoaderStateSuccess(),
+            },
+          ),
+        ),
       );
 }

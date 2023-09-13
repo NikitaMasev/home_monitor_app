@@ -16,11 +16,13 @@ class DevicesBuilder extends StatelessWidget {
   const DevicesBuilder({
     required this.iotDevices,
     required this.iotPowerChanged,
+    required this.deviceSelected,
     final Key? key,
   }) : super(key: key);
 
   final List<IotDevice> iotDevices;
   final IotPowerChanged iotPowerChanged;
+  final ValueChanged<IotDevice> deviceSelected;
 
   int _getGridCount(final BuildContext context) {
     final mediaData = MediaQuery.of(context);
@@ -64,12 +66,14 @@ class DevicesBuilder extends StatelessWidget {
                   headline: 'Контроль',
                   itemSize: _sizeDeviceItem,
                   iotPowerChanged: iotPowerChanged,
+                  deviceSelected: deviceSelected,
                 ),
                 DevicesHorizontal(
                   iotDevices: devicesMonitor,
                   headline: 'Мониторинг',
                   itemSize: _sizeDeviceItem,
                   iotPowerChanged: iotPowerChanged,
+                  deviceSelected: deviceSelected,
                 ),
               ],
             ),
@@ -83,6 +87,7 @@ class DevicesBuilder extends StatelessWidget {
                   iotDevices: devicesControl,
                   crossAxisCount: _getGridCount(context),
                   iotPowerChanged: iotPowerChanged,
+                  deviceSelected: deviceSelected,
                 ),
               )
             : Padding(
@@ -93,6 +98,7 @@ class DevicesBuilder extends StatelessWidget {
                   iotDevices: devicesMonitor,
                   crossAxisCount: _getGridCount(context),
                   iotPowerChanged: iotPowerChanged,
+                  deviceSelected: deviceSelected,
                 ),
               );
   }

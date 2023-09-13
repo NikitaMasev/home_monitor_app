@@ -9,6 +9,7 @@ class DevicesHorizontal extends StatelessWidget {
     required this.itemSize,
     required this.headline,
     required this.iotPowerChanged,
+    required this.deviceSelected,
     final Key? key,
   }) : super(key: key);
 
@@ -16,6 +17,7 @@ class DevicesHorizontal extends StatelessWidget {
   final String headline;
   final double itemSize;
   final IotPowerChanged iotPowerChanged;
+  final ValueChanged<IotDevice> deviceSelected;
 
   @override
   Widget build(final BuildContext context) => Column(
@@ -37,6 +39,7 @@ class DevicesHorizontal extends StatelessWidget {
                   iotDevices[i].id,
                   state,
                 ),
+                onTap: () => deviceSelected(iotDevices[i]),
               ),
             ),
           ),

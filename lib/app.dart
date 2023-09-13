@@ -23,7 +23,7 @@ class App extends StatelessWidget {
               initialized: initializedConfig,
               child: MaterialApp.router(
                 scrollBehavior: ScrollNonStretching(),
-                title: 'Home monitor',
+                title: 'Home Monitor',
                 routerConfig: _appRouter.config(),
 /*                routerDelegate: _appRouter.delegate(),
                 routeInformationParser: _appRouter.defaultRouteParser(),*/

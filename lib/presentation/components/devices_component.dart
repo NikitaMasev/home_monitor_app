@@ -55,6 +55,10 @@ class _DevicesComponentState extends State<DevicesComponent> {
     _iotDevicesBloc.add(IotDevicesEvent.controlDevice(controlData));
   }
 
+  void _onDeviceSelected(final IotDevice iotDevice) {
+    ///TODO ROUTE TO DETAIL PAGE
+  }
+
   @override
   Widget build(final BuildContext context) => StreamBuilder(
         stream: _controllerDevicesState.stream,
@@ -68,6 +72,7 @@ class _DevicesComponentState extends State<DevicesComponent> {
                   .iotDevicesDataWrapper
                   .devices,
               iotPowerChanged: _onPowerChanged,
+              deviceSelected: _onDeviceSelected,
             ),
         },
       );

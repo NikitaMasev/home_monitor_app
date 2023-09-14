@@ -40,6 +40,12 @@ class _DeviceRgbaAddressState extends State<DeviceRgbaAddress>
       );
 
   @override
+  void initState() {
+    initSwitchState();
+    super.initState();
+  }
+
+  @override
   bool localSwitchState = false;
 
   @override

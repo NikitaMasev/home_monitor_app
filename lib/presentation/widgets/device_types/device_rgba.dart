@@ -39,6 +39,12 @@ class _DeviceRgbaState extends State<DeviceRgba> implements SwitchProperty {
       );
 
   @override
+  void initState() {
+    initSwitchState();
+    super.initState();
+  }
+
+  @override
   bool localSwitchState = false;
 
   @override

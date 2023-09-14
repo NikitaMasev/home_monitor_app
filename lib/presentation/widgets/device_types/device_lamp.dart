@@ -42,6 +42,12 @@ class _DeviceLampState extends State<DeviceLamp> implements SwitchProperty {
   bool localSwitchState = false;
 
   @override
+  void initState() {
+    initSwitchState();
+    super.initState();
+  }
+
+  @override
   void initSwitchState() {
     localSwitchState = widget.lampData.controlPower == TypeControl.powerOn;
   }

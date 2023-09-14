@@ -1,6 +1,8 @@
 import 'dart:async';
 
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:home_monitor/internal/router/app_router.dart';
 import 'package:home_monitor/presentation/models/devices_state_ui.dart';
 import 'package:home_monitor/presentation/widgets/devices_builder.dart';
 import 'package:home_monitor/presentation/widgets/loaders/loading_status.dart';
@@ -56,7 +58,30 @@ class _DevicesComponentState extends State<DevicesComponent> {
   }
 
   void _onDeviceSelected(final IotDevice iotDevice) {
-    ///TODO ROUTE TO DETAIL PAGE
+    if (iotDevice.data == null) {
+      return;
+    }
+
+    switch (iotDevice.typeDevice) {
+      case TypeDevice.ups:
+      // TODO: Handle this case.
+      case TypeDevice.lamp:
+      // TODO: Handle this case.
+      case TypeDevice.rgba:
+      // TODO: Handle this case.
+      case TypeDevice.rgbaAddress:
+        context.router.push(
+          LedAddressDetailRoute(
+            iotDevicesBloc: _iotDevicesBloc,
+            ledData: iotDevice.data as LedData,
+          ),
+        );
+        break;
+      case TypeDevice.tempSensor:
+      // TODO: Handle this case.
+      case TypeDevice.unknown:
+      // TODO: Handle this case.
+    }
   }
 
   @override

@@ -46,6 +46,16 @@ class ThemeLightHolder implements ThemeHolder {
         brightness: Brightness.light,
         visualDensity: VisualDensity.adaptivePlatformDensity,
         colorScheme: _lightColorScheme,
+        cardTheme: CardTheme(
+          clipBehavior: Clip.hardEdge,
+          color: _lightColorScheme.surfaceVariant,
+          elevation: 0,
+          shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(
+              Radius.circular(12),
+            ),
+          ),
+        ),
       );
 
   @override

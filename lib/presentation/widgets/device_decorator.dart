@@ -23,9 +23,6 @@ class DeviceDecorator extends StatelessWidget {
     final nameDevices = iotDevice.name ??
         '${typeDeviceToString[iotDevice.typeDevice]!} ${iotDevice.id}';
     return Card(
-      color: Theme.of(context).colorScheme.surfaceVariant,
-      elevation: 0,
-      clipBehavior: Clip.hardEdge,
       child: switch (iotDevice.typeDevice) {
         TypeDevice.ups => DeviceUps(
             headline: iotDevice.name ?? nameDevices,

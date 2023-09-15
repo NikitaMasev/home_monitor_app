@@ -46,6 +46,7 @@ class ThemeLightHolder implements ThemeHolder {
         brightness: Brightness.light,
         visualDensity: VisualDensity.adaptivePlatformDensity,
         colorScheme: _lightColorScheme,
+        splashColor: _lightColorScheme.tertiaryContainer,
         cardTheme: CardTheme(
           clipBehavior: Clip.hardEdge,
           color: _lightColorScheme.surfaceVariant,

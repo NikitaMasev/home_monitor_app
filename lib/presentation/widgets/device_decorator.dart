@@ -34,7 +34,6 @@ class DeviceDecorator extends StatelessWidget {
             onSwitchChanged: onSwitchChanged,
           ),
         TypeDevice.rgba => InkWell(
-            splashColor: Theme.of(context).colorScheme.tertiaryContainer,
             onTap: onTap,
             child: DeviceRgba(
               headline: iotDevice.name ?? nameDevices,
@@ -43,7 +42,6 @@ class DeviceDecorator extends StatelessWidget {
             ),
           ),
         TypeDevice.rgbaAddress => InkWell(
-            splashColor: Theme.of(context).colorScheme.tertiaryContainer,
             onTap: onTap,
             child: DeviceRgbaAddress(
               headline: iotDevice.name ?? nameDevices,

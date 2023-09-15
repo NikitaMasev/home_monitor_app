@@ -43,12 +43,15 @@ class _LedAddressConfigState extends State<LedAddressConfig> {
   void initState() {
     firstSelectedColor = widget.initialFirstColor;
     secondSelectedColor = widget.initialSecondColor;
+
     final indexLedEffect = getLedAddressIndexById(widget.initialLedEffectId);
-    print('INDEX LED EFFECT $indexLedEffect');
-    Future.delayed(Duration(seconds: 0), () {
-      print('DELAYED STARTED');
-      controller.moveTo!(indexLedEffect);
-    });
+
+    ///Hack for playing animation of the WidgetSlider straightaway after
+    ///build function.
+    Future<void>.delayed(
+      Duration.zero,
+      () => controller.moveTo!(indexLedEffect),
+    );
     super.initState();
   }
 
@@ -78,7 +81,6 @@ class _LedAddressConfigState extends State<LedAddressConfig> {
         Padding(
           padding: const EdgeInsets.only(top: 18),
           child: SleekCircularSlider(
-            min: 0,
             max: 1,
             initialValue: widget.initialBrightness,
             appearance: CircularSliderAppearance(
@@ -94,6 +96,7 @@ class _LedAddressConfigState extends State<LedAddressConfig> {
                     Theme.of(context).textTheme.headlineSmall!.copyWith(
                           color: Theme.of(context).colorScheme.secondary,
                         ),
+                modifier: (final val)=>'${(val*100).toInt()} %',
               ),
             ),
             onChangeEnd: widget.onBrightness,

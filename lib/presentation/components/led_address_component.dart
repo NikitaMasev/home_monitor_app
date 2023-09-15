@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:home_monitor/internal/led/brightness_normalizer_led_data.dart';
 import 'package:home_monitor/internal/led/color_normalizer_led_data.dart';
+import 'package:home_monitor/internal/led/led_data_copy_id.dart';
 import 'package:home_monitor/internal/led/led_data_normalizer_hsv.dart';
 import 'package:home_monitor/presentation/widgets/details_config/led_address_config.dart';
 import 'package:iot_client_starter/iot_client_starter.dart';
@@ -46,6 +48,7 @@ class _LedAddressComponentState extends State<LedAddressComponent> {
   }
 
   void _onBrightnessSelected(final double value) {
+    print('_onBrightnessSelected $value');
     _brightness = value;
     _pushNewData();
   }
@@ -56,7 +59,16 @@ class _LedAddressComponentState extends State<LedAddressComponent> {
   }
 
   void _pushNewData() {
-    final newLedData = widget.ledData.copyWithColor(_color);
+    final newLedData = widget.ledData
+        .copyWithColor(
+          _color,
+        )
+        .copyWithBrightness(
+          _brightness,
+        )
+        .copyWithId(
+          _idEffect,
+        );
 
     _iotDevicesBloc.add(
       IotDevicesEvent.controlDevice(
@@ -64,7 +76,7 @@ class _LedAddressComponentState extends State<LedAddressComponent> {
           iotIdControl: widget.idDevice,
           typeControl: TypeControl.rgbaEffects,
           configControl: '${newLedData.h}:${newLedData.s}:${newLedData.v}:'
-              '$_idEffect:${newLedData.powerOn ? 1 : 0}',
+              '${newLedData.mode}:${newLedData.powerOn ? 1 : 0}',
         ),
       ),
     );

@@ -74,6 +74,7 @@ class _DevicesComponentState extends State<DevicesComponent> {
           LedAddressDetailRoute(
             iotDevicesBloc: _iotDevicesBloc,
             ledData: iotDevice.data as LedData,
+            idDevice: iotDevice.id,
           ),
         );
         break;

@@ -34,6 +34,7 @@ abstract class _$AppRouter extends RootStackRouter {
         child: LedAddressDetailPage(
           iotDevicesBloc: args.iotDevicesBloc,
           ledData: args.ledData,
+          idDevice: args.idDevice,
         ),
       );
     },
@@ -86,12 +87,14 @@ class LedAddressDetailRoute extends PageRouteInfo<LedAddressDetailRouteArgs> {
   LedAddressDetailRoute({
     required IotDevicesBloc iotDevicesBloc,
     required LedData ledData,
+    required int idDevice,
     List<PageRouteInfo>? children,
   }) : super(
           LedAddressDetailRoute.name,
           args: LedAddressDetailRouteArgs(
             iotDevicesBloc: iotDevicesBloc,
             ledData: ledData,
+            idDevice: idDevice,
           ),
           initialChildren: children,
         );
@@ -106,15 +109,18 @@ class LedAddressDetailRouteArgs {
   const LedAddressDetailRouteArgs({
     required this.iotDevicesBloc,
     required this.ledData,
+    required this.idDevice,
   });
 
   final IotDevicesBloc iotDevicesBloc;
 
   final LedData ledData;
 
+  final int idDevice;
+
   @override
   String toString() {
-    return 'LedAddressDetailRouteArgs{iotDevicesBloc: $iotDevicesBloc, ledData: $ledData}';
+    return 'LedAddressDetailRouteArgs{iotDevicesBloc: $iotDevicesBloc, ledData: $ledData, idDevice: $idDevice}';
   }
 }
 

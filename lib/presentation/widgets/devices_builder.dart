@@ -29,7 +29,7 @@ class DevicesBuilder extends StatelessWidget {
     final width = mediaData.size.width;
     final crossCount =
         (width - 2 * _paddingHorizontalDevicesGrid) ~/ _sizeDeviceItem;
-    log('new cross count ${crossCount}');
+    //log('new cross count ${crossCount}');
     return crossCount;
   }
 

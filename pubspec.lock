@@ -448,10 +448,10 @@ packages:
     description:
       path: "."
       ref: main
-      resolved-ref: "9474fcdb2d9a412afc898e928ffe908fb7390aa4"
+      resolved-ref: "2ed1524d0a8f31c344eeb0ac69a0c8db4abce430"
       url: "https://github.com/NikitaMasev/iot_client_starter.git"
     source: git
-    version: "1.1.7"
+    version: "1.1.8"
   iot_internal:
     dependency: transitive
     description:

@@ -38,3 +38,12 @@ String getLedAddressDescriptionByIndex(final int index) =>
 
 int getLedAddressIdByIndex(final int index) =>
     ledAddressEffectsDescription.keys.elementAt(index);
+
+int getLedAddressIndexById(final int id) =>
+    ledAddressEffectsDescription.entries.indexed.where((final indexedEntry) {
+      final (index, entry) = indexedEntry;
+      return entry.key == id;
+    }).map((final indexedEntry) {
+      final (index, entry) = indexedEntry;
+      return index;
+    }).first;

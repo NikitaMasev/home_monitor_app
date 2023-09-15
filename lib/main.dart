@@ -17,7 +17,7 @@ Future<void> _bootstrap(
       FlutterNativeSplash.preserve(
         widgetsBinding: WidgetsFlutterBinding.ensureInitialized(),
       );
-      Bloc.observer = AppBlocObserver();
+      //Bloc.observer = AppBlocObserver();
       runApp(builder(FlutterNativeSplash.remove));
     },
     (final error, final stack) => log(

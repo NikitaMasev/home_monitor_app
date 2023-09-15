@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:home_monitor/internal/led_address_property.dart';
+import 'package:home_monitor/internal/led/led_address_property.dart';
 import 'package:home_monitor/presentation/assets_paths/assets.gen.dart';
 import 'package:home_monitor/presentation/widgets/tile_color_picker.dart';
 import 'package:sleek_circular_slider/sleek_circular_slider.dart';
@@ -43,6 +43,12 @@ class _LedAddressConfigState extends State<LedAddressConfig> {
   void initState() {
     firstSelectedColor = widget.initialFirstColor;
     secondSelectedColor = widget.initialSecondColor;
+    final indexLedEffect = getLedAddressIndexById(widget.initialLedEffectId);
+    print('INDEX LED EFFECT $indexLedEffect');
+    Future.delayed(Duration(seconds: 0), () {
+      print('DELAYED STARTED');
+      controller.moveTo!(indexLedEffect);
+    });
     super.initState();
   }
 
@@ -72,6 +78,8 @@ class _LedAddressConfigState extends State<LedAddressConfig> {
         Padding(
           padding: const EdgeInsets.only(top: 18),
           child: SleekCircularSlider(
+            min: 0,
+            max: 1,
             initialValue: widget.initialBrightness,
             appearance: CircularSliderAppearance(
               size: 200,

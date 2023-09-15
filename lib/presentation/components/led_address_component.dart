@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:home_monitor/internal/led/color_normalizer_led_data.dart';
+import 'package:home_monitor/internal/led/led_data_normalizer_hsv.dart';
 import 'package:home_monitor/presentation/widgets/details_config/led_address_config.dart';
 import 'package:iot_client_starter/iot_client_starter.dart';
 import 'package:iot_models/iot_models.dart';
@@ -29,11 +31,11 @@ class _LedAddressComponentState extends State<LedAddressComponent> {
     _iotDevicesBloc = context.read<IotDevicesBloc>();
     _color = HSVColor.fromAHSV(
       1,
-      widget.ledData.h.toDouble(),
-      widget.ledData.s.toDouble(),
-      widget.ledData.v.toDouble(),
+      widget.ledData.getHue360(),
+      widget.ledData.getSatNulOne(),
+      widget.ledData.getValNulOne(),
     ).toColor();
-    _brightness = widget.ledData.v.toDouble();
+    _brightness = widget.ledData.getBrightnessNullOne();
     _idEffect = widget.ledData.mode;
     super.initState();
   }
@@ -54,15 +56,15 @@ class _LedAddressComponentState extends State<LedAddressComponent> {
   }
 
   void _pushNewData() {
-    final hsv = HSVColor.fromColor(_color);
+    final newLedData = widget.ledData.copyWithColor(_color);
 
     _iotDevicesBloc.add(
       IotDevicesEvent.controlDevice(
         ControlData(
           iotIdControl: widget.idDevice,
           typeControl: TypeControl.rgbaEffects,
-          configControl: '${hsv.hue}:${hsv.saturation}:${hsv.value}:'
-              '$_idEffect:${widget.ledData.powerOn ? 1 : 0}',
+          configControl: '${newLedData.h}:${newLedData.s}:${newLedData.v}:'
+              '$_idEffect:${newLedData.powerOn ? 1 : 0}',
         ),
       ),
     );

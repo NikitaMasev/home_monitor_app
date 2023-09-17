@@ -38,6 +38,17 @@ abstract class _$AppRouter extends RootStackRouter {
         ),
       );
     },
+    LedDetailRoute.name: (routeData) {
+      final args = routeData.argsAs<LedDetailRouteArgs>();
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: LedDetailPage(
+          iotDevicesBloc: args.iotDevicesBloc,
+          ledData: args.ledData,
+          idDevice: args.idDevice,
+        ),
+      );
+    },
     NotificationsRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
@@ -121,6 +132,49 @@ class LedAddressDetailRouteArgs {
   @override
   String toString() {
     return 'LedAddressDetailRouteArgs{iotDevicesBloc: $iotDevicesBloc, ledData: $ledData, idDevice: $idDevice}';
+  }
+}
+
+/// generated route for
+/// [LedDetailPage]
+class LedDetailRoute extends PageRouteInfo<LedDetailRouteArgs> {
+  LedDetailRoute({
+    required IotDevicesBloc iotDevicesBloc,
+    required LedData ledData,
+    required int idDevice,
+    List<PageRouteInfo>? children,
+  }) : super(
+          LedDetailRoute.name,
+          args: LedDetailRouteArgs(
+            iotDevicesBloc: iotDevicesBloc,
+            ledData: ledData,
+            idDevice: idDevice,
+          ),
+          initialChildren: children,
+        );
+
+  static const String name = 'LedDetailRoute';
+
+  static const PageInfo<LedDetailRouteArgs> page =
+      PageInfo<LedDetailRouteArgs>(name);
+}
+
+class LedDetailRouteArgs {
+  const LedDetailRouteArgs({
+    required this.iotDevicesBloc,
+    required this.ledData,
+    required this.idDevice,
+  });
+
+  final IotDevicesBloc iotDevicesBloc;
+
+  final LedData ledData;
+
+  final int idDevice;
+
+  @override
+  String toString() {
+    return 'LedDetailRouteArgs{iotDevicesBloc: $iotDevicesBloc, ledData: $ledData, idDevice: $idDevice}';
   }
 }
 

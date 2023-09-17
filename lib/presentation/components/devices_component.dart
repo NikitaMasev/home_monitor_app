@@ -68,7 +68,14 @@ class _DevicesComponentState extends State<DevicesComponent> {
       case TypeDevice.lamp:
       // TODO: Handle this case.
       case TypeDevice.rgba:
-      // TODO: Handle this case.
+        context.router.push(
+          LedDetailRoute(
+            iotDevicesBloc: _iotDevicesBloc,
+            ledData: iotDevice.data as LedData,
+            idDevice: iotDevice.id,
+          ),
+        );
+        break;
       case TypeDevice.rgbaAddress:
         context.router.push(
           LedAddressDetailRoute(

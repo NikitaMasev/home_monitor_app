@@ -74,7 +74,6 @@ class _LedAddressConfigState extends State<LedAddressConfig> {
           onColorSelected: (final newColor) {
             secondSelectedColor = newColor;
             setState(() {});
-            widget.onFirstColor(secondSelectedColor);
           },
           title: 'Второй выбранный цвет',
         ),
@@ -93,17 +92,19 @@ class _LedAddressConfigState extends State<LedAddressConfig> {
               infoProperties: InfoProperties(
                 bottomLabelText: 'Яркость',
                 bottomLabelStyle:
-                    Theme.of(context).textTheme.headlineSmall!.copyWith(
-                          color: Theme.of(context).colorScheme.secondary,
+                    Theme.of(context).textTheme.headlineSmall,
+                mainLabelStyle:
+                    Theme.of(context).textTheme.displaySmall!.copyWith(
+                          color: secondSelectedColor,
                         ),
-                modifier: (final val)=>'${(val*100).toInt()} %',
+                modifier: (final val) => '${(val * 100).toInt()} %',
               ),
             ),
             onChangeEnd: widget.onBrightness,
           ),
         ),
         WidgetSlider(
-          fixedSize: 170,
+          fixedSize: 180,
           controller: controller,
           itemCount: ledAddressEffectsDescription.length,
           onMove: (final index) => widget.onLedEffectId(
@@ -120,13 +121,17 @@ class _LedAddressConfigState extends State<LedAddressConfig> {
                     textAlign: TextAlign.left,
                     style: Theme.of(context).textTheme.bodyLarge,
                   ),
-                  Assets.svg.led.svg(width: 46),
+                  Assets.svg.led.svg(
+                    width: 56,
+                    colorFilter: ColorFilter.mode(
+                      secondSelectedColor,
+                      BlendMode.srcIn,
+                    ),
+                  ),
                   Text(
                     getLedAddressDescriptionByIndex(index),
                     textAlign: TextAlign.center,
-                    style: Theme.of(context).textTheme.headlineSmall!.copyWith(
-                          color: Theme.of(context).colorScheme.secondary,
-                        ),
+                    style: Theme.of(context).textTheme.headlineSmall,
                   ),
                 ],
               ),

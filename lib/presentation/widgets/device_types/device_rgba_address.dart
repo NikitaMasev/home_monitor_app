@@ -22,21 +22,30 @@ class DeviceRgbaAddress extends StatefulWidget {
 class _DeviceRgbaAddressState extends State<DeviceRgbaAddress>
     implements SwitchProperty {
   @override
-  Widget build(final BuildContext context) => Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.only(left: 8, right: 8, top: 4),
-            child: Text(
-              widget.headline,
-              maxLines: 1,
+  Widget build(final BuildContext context) => Padding(
+        padding: const EdgeInsets.all(8),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              '${widget.headline} in room 4',
+              maxLines: 2,
+              textAlign: TextAlign.center,
             ),
-          ),
-          Assets.svg.led.svg(width: 46),
-          Switch(
-            value: localSwitchState,
-            onChanged: onSwitchChanged,
-          ),
-        ],
+            const Spacer(),
+            Assets.svg.led.svg(
+              width: 56,
+              colorFilter: ColorFilter.mode(
+                Theme.of(context).colorScheme.tertiary,
+                BlendMode.srcIn,
+              ),
+            ),
+            Switch(
+              value: localSwitchState,
+              onChanged: onSwitchChanged,
+            ),
+          ],
+        ),
       );
 
   @override

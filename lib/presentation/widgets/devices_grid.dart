@@ -20,7 +20,7 @@ class DevicesGrid extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) => Padding(
-        padding: const EdgeInsets.only(top: 8),
+        padding: const EdgeInsets.only(top: 16),
         child: GridView.builder(
           itemCount: iotDevices.length,
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(

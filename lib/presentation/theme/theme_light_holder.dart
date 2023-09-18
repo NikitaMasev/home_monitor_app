@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:home_monitor/presentation/theme/hex_color_converter.dart';
-import 'package:home_monitor/presentation/theme/theme_holder.dart';
-import 'package:home_monitor/presentation/theme/theme_options.dart';
 
 const _lightColorScheme = ColorScheme(
   brightness: Brightness.light,
@@ -37,10 +34,7 @@ const _lightColorScheme = ColorScheme(
   scrim: Color(0xFF000000),
 );
 
-class ThemeLightHolder implements ThemeHolder {
-  final _colorGray500 = HexColor.fromHex('#828282');
-
-  @override
+class ThemeLightHolder {
   ThemeData getTheme() => ThemeData(
         useMaterial3: true,
         brightness: Brightness.light,
@@ -58,12 +52,4 @@ class ThemeLightHolder implements ThemeHolder {
           ),
         ),
       );
-
-  @override
-  ThemeOptions getThemeOptions() => ThemeOptions(
-        colorGray500: _colorGray500,
-      );
-
-  @override
-  String get themeId => 'light';
 }

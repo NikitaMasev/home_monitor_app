@@ -8,6 +8,8 @@ import 'package:iot_client_starter/iot_client_starter.dart';
 import 'package:iot_models/iot_models.dart';
 import 'package:provider/provider.dart';
 
+///TODO FIX _onLedEffectSelected at start
+///TODO FIX color shadow selecting
 class LedAddressComponent extends StatefulWidget {
   const LedAddressComponent({
     required this.ledData,
@@ -43,6 +45,7 @@ class _LedAddressComponentState extends State<LedAddressComponent> {
   }
 
   void _onFirstColorSelected(final Color newColor) {
+    print('_onFirstColorSelected');
     _color = newColor;
     _pushNewData();
   }
@@ -54,11 +57,13 @@ class _LedAddressComponentState extends State<LedAddressComponent> {
   }
 
   void _onLedEffectSelected(final int id) {
+    print('_onLedEffectSelected');
     _idEffect = id;
     _pushNewData();
   }
 
   void _pushNewData() {
+    print('_pushNewData');
     final newLedData = widget.ledData
         .copyWithColor(
           _color,

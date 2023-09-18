@@ -6,10 +6,10 @@ import 'package:home_monitor/presentation/widgets/devices_grid.dart';
 import 'package:home_monitor/presentation/widgets/devices_horizontal.dart';
 import 'package:iot_models/iot_models.dart';
 
-const _sizeDeviceItem = 130.0;
-const _paddingVerticalDevicesHorizontal = 32.0;
-const _paddingHorizontalDevicesHorizontal = 8.0;
-const _paddingHorizontalDevicesGrid = 8.0;
+const _sizeDeviceItem = 170.0;
+const _paddingVerticalDevicesHorizontal = 16.0;
+const _paddingHorizontalDevicesHorizontal = 16.0;
+const _paddingHorizontalDevicesGrid = 16.0;
 const _paddingTopDevicesGrid = 32;
 
 class DevicesBuilder extends StatelessWidget {
@@ -29,7 +29,7 @@ class DevicesBuilder extends StatelessWidget {
     final width = mediaData.size.width;
     final crossCount =
         (width - 2 * _paddingHorizontalDevicesGrid) ~/ _sizeDeviceItem;
-    //log('new cross count ${crossCount}');
+    log('new cross count ${crossCount}');
     return crossCount;
   }
 
@@ -51,6 +51,37 @@ class DevicesBuilder extends StatelessWidget {
               device.typeDevice == TypeDevice.tempSensor,
         )
         .toList();
+
+    return SafeArea(
+      child: Padding(
+        padding: const EdgeInsets.symmetric(
+          vertical: _paddingVerticalDevicesHorizontal,
+          horizontal: _paddingHorizontalDevicesHorizontal,
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            DevicesHorizontal(
+              iotDevices: devicesControl,
+              headline: 'Контроль',
+              itemSize: _sizeDeviceItem,
+              iotPowerChanged: iotPowerChanged,
+              deviceSelected: deviceSelected,
+            ),
+            const SizedBox(
+              height: 16,
+            ),
+            DevicesHorizontal(
+              iotDevices: devicesMonitor,
+              headline: 'Мониторинг',
+              itemSize: _sizeDeviceItem,
+              iotPowerChanged: iotPowerChanged,
+              deviceSelected: deviceSelected,
+            ),
+          ],
+        ),
+      ),
+    );
 
     return devicesControl.isNotEmpty && devicesMonitor.isNotEmpty
         ? Padding(

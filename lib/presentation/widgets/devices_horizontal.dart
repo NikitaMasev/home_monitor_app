@@ -26,20 +26,23 @@ class DevicesHorizontal extends StatelessWidget {
           Text(
             headline,
           ),
-          SizedBox(
-            height: itemSize,
-            child: ListView.builder(
-              scrollDirection: Axis.horizontal,
-              shrinkWrap: true,
-              itemCount: iotDevices.length,
-              itemExtent: itemSize,
-              itemBuilder: (final ctx, final i) => DeviceDecorator(
-                iotDevice: iotDevices[i],
-                onSwitchChanged: (final state) => iotPowerChanged(
-                  iotDevices[i].id,
-                  state,
+          Padding(
+            padding: const EdgeInsets.only(top: 8),
+            child: SizedBox(
+              height: itemSize,
+              child: ListView.builder(
+                scrollDirection: Axis.horizontal,
+                shrinkWrap: true,
+                itemCount: iotDevices.length,
+                itemExtent: itemSize,
+                itemBuilder: (final ctx, final i) => DeviceDecorator(
+                  iotDevice: iotDevices[i],
+                  onSwitchChanged: (final state) => iotPowerChanged(
+                    iotDevices[i].id,
+                    state,
+                  ),
+                  onTap: () => deviceSelected(iotDevices[i]),
                 ),
-                onTap: () => deviceSelected(iotDevices[i]),
               ),
             ),
           ),

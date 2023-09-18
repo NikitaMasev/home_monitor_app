@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:home_monitor/presentation/theme/hex_color_converter.dart';
-import 'package:home_monitor/presentation/theme/theme_holder.dart';
-import 'package:home_monitor/presentation/theme/theme_options.dart';
 
 const _darkColorScheme = ColorScheme(
   brightness: Brightness.dark,
@@ -37,22 +34,22 @@ const _darkColorScheme = ColorScheme(
   scrim: Color(0xFF000000),
 );
 
-class ThemeDarkHolder implements ThemeHolder {
-  final _colorGray500 = HexColor.fromHex('#828282');
-
-  @override
+class ThemeDarkHolder {
   ThemeData getTheme() => ThemeData(
         useMaterial3: true,
         brightness: Brightness.dark,
         visualDensity: VisualDensity.adaptivePlatformDensity,
         colorScheme: _darkColorScheme,
+        splashColor: _darkColorScheme.tertiaryContainer,
+        cardTheme: CardTheme(
+          clipBehavior: Clip.hardEdge,
+          color: _darkColorScheme.surfaceVariant,
+          elevation: 0,
+          shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(
+              Radius.circular(12),
+            ),
+          ),
+        ),
       );
-
-  @override
-  ThemeOptions getThemeOptions() => ThemeOptions(
-        colorGray500: _colorGray500,
-      );
-
-  @override
-  String get themeId => 'dark';
 }

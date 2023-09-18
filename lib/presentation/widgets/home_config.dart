@@ -29,13 +29,33 @@ class HomeConfig extends StatelessWidget {
               destinations: <Widget>[
                 NavigationDestination(
                   label: 'Устройства',
-                  icon: Assets.svg.iot.svg(),
-                  selectedIcon: Assets.svg.iotSelected.svg(),
+                  icon: Assets.svg.iotSelected.svg(
+                    colorFilter: ColorFilter.mode(
+                      Theme.of(context).colorScheme.secondaryContainer,
+                      BlendMode.srcIn,
+                    ),
+                  ),
+                  selectedIcon: Assets.svg.iot.svg(
+                    colorFilter: ColorFilter.mode(
+                      Theme.of(context).colorScheme.onSecondaryContainer,
+                      BlendMode.srcIn,
+                    ),
+                  ),
                 ),
                 NavigationDestination(
                   label: 'Уведомления',
-                  icon: Assets.svg.bells.svg(),
-                  selectedIcon: Assets.svg.bellsSelected.svg(),
+                  icon: Assets.svg.bellsSelected.svg(
+                    colorFilter: ColorFilter.mode(
+                      Theme.of(context).colorScheme.secondaryContainer,
+                      BlendMode.srcIn,
+                    ),
+                  ),
+                  selectedIcon: Assets.svg.bells.svg(
+                    colorFilter: ColorFilter.mode(
+                      Theme.of(context).colorScheme.onSecondaryContainer,
+                      BlendMode.srcIn,
+                    ),
+                  ),
                 ),
               ],
             ),

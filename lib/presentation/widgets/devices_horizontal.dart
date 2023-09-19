@@ -25,6 +25,7 @@ class DevicesHorizontal extends StatelessWidget {
         children: [
           Text(
             headline,
+            style: Theme.of(context).textTheme.titleMedium,
           ),
           Padding(
             padding: const EdgeInsets.only(top: 8),

@@ -32,8 +32,11 @@ class LedAddressConfig extends StatefulWidget {
 }
 
 class _LedAddressConfigState extends State<LedAddressConfig> {
-  late Color firstSelectedColor; // Color for picker in dialog using onChanged
-  late Color secondSelectedColor; // Color for picker using color select dialog.
+  late Color firstSelectedColor;
+  late Color secondSelectedColor;
+  ///Changed true after playing slider animation to already selected led effect.
+  ///Needed for removing spam to [onLedEffectId] at start.
+  var _sliderInitialized = false;
 
   final controller = SliderController(
     duration: const Duration(milliseconds: 600),
@@ -50,14 +53,16 @@ class _LedAddressConfigState extends State<LedAddressConfig> {
     ///build function.
     Future<void>.delayed(
       Duration.zero,
-      () => controller.moveTo!(indexLedEffect),
+      () => controller.moveTo!(indexLedEffect).then(
+        (final _) => _sliderInitialized = true,
+      ),
     );
     super.initState();
   }
 
   @override
   Widget build(final BuildContext context) {
-    final cardTheme = Theme.of(context).cardTheme;
+    final textTheme = Theme.of(context).textTheme;
     return ListView(
       children: <Widget>[
         TileColorPicker(
@@ -91,12 +96,10 @@ class _LedAddressConfigState extends State<LedAddressConfig> {
               ),
               infoProperties: InfoProperties(
                 bottomLabelText: 'Яркость',
-                bottomLabelStyle:
-                    Theme.of(context).textTheme.headlineSmall,
-                mainLabelStyle:
-                    Theme.of(context).textTheme.displaySmall!.copyWith(
-                          color: secondSelectedColor,
-                        ),
+                bottomLabelStyle: textTheme.headlineSmall,
+                mainLabelStyle: textTheme.displaySmall!.copyWith(
+                  color: secondSelectedColor,
+                ),
                 modifier: (final val) => '${(val * 100).toInt()} %',
               ),
             ),
@@ -107,9 +110,11 @@ class _LedAddressConfigState extends State<LedAddressConfig> {
           fixedSize: 180,
           controller: controller,
           itemCount: ledAddressEffectsDescription.length,
-          onMove: (final index) => widget.onLedEffectId(
-            getLedAddressIdByIndex(index),
-          ),
+          onMove: (final index) {
+            if (_sliderInitialized) {
+              widget.onLedEffectId(getLedAddressIdByIndex(index));
+            }
+          },
           itemBuilder: (final ctx, final index, final activeIndex) => Card(
             child: Padding(
               padding: const EdgeInsets.all(12),
@@ -119,7 +124,7 @@ class _LedAddressConfigState extends State<LedAddressConfig> {
                   Text(
                     'Эффект',
                     textAlign: TextAlign.left,
-                    style: Theme.of(context).textTheme.bodyLarge,
+                    style: textTheme.bodyLarge,
                   ),
                   Assets.svg.led.svg(
                     width: 56,
@@ -131,7 +136,7 @@ class _LedAddressConfigState extends State<LedAddressConfig> {
                   Text(
                     getLedAddressDescriptionByIndex(index),
                     textAlign: TextAlign.center,
-                    style: Theme.of(context).textTheme.headlineSmall,
+                    style: textTheme.headlineSmall,
                   ),
                 ],
               ),

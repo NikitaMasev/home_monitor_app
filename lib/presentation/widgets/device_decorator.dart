@@ -19,24 +19,21 @@ class DeviceDecorator extends StatelessWidget {
   final VoidCallback onTap;
 
   @override
-  Widget build(final BuildContext context) {
-    final nameDevices = iotDevice.name ??
-        '${typeDeviceToString[iotDevice.typeDevice]!} ${iotDevice.id}';
-    return Card(
+  Widget build(final BuildContext context) => Card(
       child: switch (iotDevice.typeDevice) {
         TypeDevice.ups => DeviceUps(
-            headline: iotDevice.name ?? nameDevices,
+            headline: iotDevice.name,
             upsData: iotDevice.data as UpsData,
           ),
         TypeDevice.lamp => DeviceLamp(
-            headline: iotDevice.name ?? nameDevices,
+            headline: iotDevice.name,
             lampData: iotDevice.data as LampData,
             onSwitchChanged: onSwitchChanged,
           ),
         TypeDevice.rgba => InkWell(
             onTap: onTap,
             child: DeviceRgba(
-              headline: iotDevice.name ?? nameDevices,
+              headline: iotDevice.name,
               ledData: iotDevice.data as LedData,
               onSwitchChanged: onSwitchChanged,
             ),
@@ -44,16 +41,15 @@ class DeviceDecorator extends StatelessWidget {
         TypeDevice.rgbaAddress => InkWell(
             onTap: onTap,
             child: DeviceRgbaAddress(
-              headline: iotDevice.name ?? nameDevices,
+              headline: iotDevice.name,
               ledData: iotDevice.data as LedData,
               onSwitchChanged: onSwitchChanged,
             ),
           ),
         TypeDevice.tempSensor => DeviceSensor(
-            headline: iotDevice.name ?? nameDevices,
+            headline: iotDevice.name,
           ),
         TypeDevice.unknown => const SizedBox.shrink(),
       },
     );
-  }
 }

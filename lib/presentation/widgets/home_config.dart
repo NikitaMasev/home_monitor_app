@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:home_monitor/internal/router/app_router.dart';
+import 'package:home_monitor/internal/theme/theme_bar_controller.dart';
 import 'package:home_monitor/presentation/assets_paths/assets.gen.dart';
 
 class HomeConfig extends StatelessWidget {
@@ -31,13 +32,13 @@ class HomeConfig extends StatelessWidget {
                   label: 'Устройства',
                   icon: Assets.svg.iotSelected.svg(
                     colorFilter: ColorFilter.mode(
-                      Theme.of(context).colorScheme.secondaryContainer,
+                      colorScheme.secondaryContainer,
                       BlendMode.srcIn,
                     ),
                   ),
                   selectedIcon: Assets.svg.iot.svg(
                     colorFilter: ColorFilter.mode(
-                      Theme.of(context).colorScheme.onSecondaryContainer,
+                      colorScheme.onSecondaryContainer,
                       BlendMode.srcIn,
                     ),
                   ),
@@ -46,13 +47,13 @@ class HomeConfig extends StatelessWidget {
                   label: 'Уведомления',
                   icon: Assets.svg.bellsSelected.svg(
                     colorFilter: ColorFilter.mode(
-                      Theme.of(context).colorScheme.secondaryContainer,
+                      colorScheme.secondaryContainer,
                       BlendMode.srcIn,
                     ),
                   ),
                   selectedIcon: Assets.svg.bells.svg(
                     colorFilter: ColorFilter.mode(
-                      Theme.of(context).colorScheme.onSecondaryContainer,
+                      colorScheme.onSecondaryContainer,
                       BlendMode.srcIn,
                     ),
                   ),

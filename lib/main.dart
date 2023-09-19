@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:home_monitor/app.dart';
+import 'package:home_monitor/internal/theme/theme_bar_controller.dart';
 import 'package:iot_internal/iot_internal.dart';
 
 void main() => _bootstrap(App.new);
@@ -17,6 +18,7 @@ Future<void> _bootstrap(
       FlutterNativeSplash.preserve(
         widgetsBinding: WidgetsFlutterBinding.ensureInitialized(),
       );
+      ThemeBarController.onSplashFlow();
       //Bloc.observer = AppBlocObserver();
       runApp(builder(FlutterNativeSplash.remove));
     },

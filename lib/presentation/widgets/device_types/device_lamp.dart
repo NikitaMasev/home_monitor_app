@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:home_monitor/internal/switch_property.dart';
+import 'package:home_monitor/internal/ui_extended/switch_property.dart';
 import 'package:home_monitor/presentation/assets_paths/assets.gen.dart';
 import 'package:iot_models/iot_models.dart';
 

@@ -1,7 +1,7 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
-import 'package:home_monitor/internal/type_callbacks.dart';
+import 'package:home_monitor/internal/ui_extended/type_callbacks.dart';
 import 'package:home_monitor/presentation/widgets/devices_grid.dart';
 import 'package:home_monitor/presentation/widgets/devices_horizontal.dart';
 import 'package:iot_models/iot_models.dart';

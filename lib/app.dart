@@ -4,8 +4,7 @@ import 'package:home_monitor/di/models/environments.dart';
 import 'package:home_monitor/internal/router/app_router.dart';
 import 'package:home_monitor/presentation/scroll_non_stretching.dart';
 import 'package:home_monitor/presentation/theme/theme_factory.dart';
-///TODO Обновление состояния списка устройств,
-/// если устройство поменялось состояние из другого места
+
 class App extends StatelessWidget {
   App(this.initializedConfig);
 

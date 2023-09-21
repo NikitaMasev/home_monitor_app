@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:home_monitor/internal/type_callbacks.dart';
+import 'package:home_monitor/internal/ui_extended/type_callbacks.dart';
 import 'package:home_monitor/presentation/widgets/device_decorator.dart';
 import 'package:iot_models/iot_models.dart';
 

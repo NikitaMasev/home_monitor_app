@@ -39,15 +39,15 @@ class NetworkConfigurator {
 
   String _getIp() => switch (_env) {
         Env.stage => '192.168.50.143',
-        Env.prod => '192.168.50.143',
-        Env.dev => '192.168.50.143',
+        Env.prod => const String.fromEnvironment('IP', defaultValue: '0.0.0.0'),
+        Env.dev => const String.fromEnvironment('IP', defaultValue: '0.0.0.0'),
         Env.test => 'localhost',
       };
 
   String _getPort() => switch (_env) {
         Env.stage => '5090',
-        Env.prod => '5090',
-        Env.dev => '5090',
+        Env.prod => const String.fromEnvironment('PORT', defaultValue: '1000'),
+        Env.dev => const String.fromEnvironment('PORT', defaultValue: '1000'),
         Env.test => '5090',
       };
 }

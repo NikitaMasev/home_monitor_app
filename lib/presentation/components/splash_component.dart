@@ -52,7 +52,7 @@ class _SplashComponentState extends State<SplashComponent> {
           case ChannelReady():
             _controllerSplashState.add(SplashUiSuccess());
             Future.delayed(
-              const Duration(seconds: 10),
+              Duration.zero,
               () => context.router.push(const HomeRoute()),
             );
             break;

@@ -450,10 +450,10 @@ packages:
     description:
       path: "."
       ref: main
-      resolved-ref: "33bf5024e4cc67b0644e314d356703785951a2d3"
+      resolved-ref: e0f8508a93e0a120ca46d810211e92acfe096da4
       url: "https://github.com/NikitaMasev/iot_models.git"
     source: git
-    version: "1.1.7"
+    version: "1.1.8"
   js:
     dependency: transitive
     description:

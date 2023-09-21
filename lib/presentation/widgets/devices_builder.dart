@@ -12,6 +12,9 @@ const _paddingHorizontalDevicesHorizontal = 16.0;
 const _paddingHorizontalDevicesGrid = 16.0;
 const _paddingTopDevicesGrid = 32;
 
+const _keyMonitor = Key('devices_monitor');
+const _keyControl = Key('devices_control');
+
 class DevicesBuilder extends StatelessWidget {
   const DevicesBuilder({
     required this.iotDevices,
@@ -67,6 +70,9 @@ class DevicesBuilder extends StatelessWidget {
               itemSize: _sizeDeviceItem,
               iotPowerChanged: iotPowerChanged,
               deviceSelected: deviceSelected,
+              //key: ValueKey(devicesControl.length),
+              //key: UniqueKey(),
+              //key: key,
             ),
             const SizedBox(
               height: 16,
@@ -77,6 +83,7 @@ class DevicesBuilder extends StatelessWidget {
               itemSize: _sizeDeviceItem,
               iotPowerChanged: iotPowerChanged,
               deviceSelected: deviceSelected,
+              //key: _keyMonitor,
             ),
           ],
         ),

@@ -32,11 +32,13 @@ class DevicesHorizontal extends StatelessWidget {
             child: SizedBox(
               height: itemSize,
               child: ListView.builder(
+                //key: ValueKey(iotDevices.length),
                 scrollDirection: Axis.horizontal,
                 shrinkWrap: true,
                 itemCount: iotDevices.length,
                 itemExtent: itemSize,
                 itemBuilder: (final ctx, final i) => DeviceDecorator(
+                  //key: ValueKey(iotDevices[i].id),
                   iotDevice: iotDevices[i],
                   onSwitchChanged: (final state) => iotPowerChanged(
                     iotDevices[i].id,

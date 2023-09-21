@@ -24,11 +24,13 @@ class NetworkConfigurator {
                 ipClients: _getIp(),
                 portClients: _getPort(),
                 cryptoClients: _crypto,
+                useLogging: true,
               ),
             Env.dev => configChannelProvider(
                 ipClients: _getIp(),
                 portClients: _getPort(),
                 cryptoClients: _crypto,
+                useLogging: true,
               ),
             Env.test => configChannelProvider(
                 ipClients: _getIp(),

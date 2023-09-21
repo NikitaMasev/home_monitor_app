@@ -44,6 +44,12 @@ class DeviceDecorator extends StatelessWidget {
               headline: iotDevice.name,
               ledData: iotDevice.data as LedData,
               onSwitchChanged: onSwitchChanged,
+              key: ValueKey(iotDevice.hashCode),///TODO analyze performance hashCode
+              //key: ValueKey((iotDevice.data as LedData).hashCode ^ iotDevice.name.hashCode),
+              //key: ValueKey('${iotDevice.name}${(iotDevice.data as LedData).powerOn}'),
+              //key: ValueKey((iotDevice.data as LedData).powerOn),
+              //key: key,
+              //key: ValueKey(iotDevice.hashCode),
             ),
           ),
         TypeDevice.tempSensor => DeviceSensor(

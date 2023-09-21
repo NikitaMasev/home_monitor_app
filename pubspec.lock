@@ -5,18 +5,18 @@ packages:
     dependency: transitive
     description:
       name: _fe_analyzer_shared
-      sha256: ae92f5d747aee634b87f89d9946000c2de774be1d6ac3e58268224348cd0101a
+      sha256: eb376e9acf6938204f90eb3b1f00b578640d3188b4c8a8ec054f9f479af8d051
       url: "https://pub.dev"
     source: hosted
-    version: "61.0.0"
+    version: "64.0.0"
   analyzer:
     dependency: transitive
     description:
       name: analyzer
-      sha256: ea3d8652bda62982addfd92fdc2d0214e5f82e43325104990d4f4c4a2a313562
+      sha256: "69f54f967773f6c26c7dcb13e93d7ccee8b17a641689da39e878d5cf13b06893"
       url: "https://pub.dev"
     source: hosted
-    version: "5.13.0"
+    version: "6.2.0"
   archive:
     dependency: transitive
     description:
@@ -221,10 +221,10 @@ packages:
     dependency: transitive
     description:
       name: dart_style
-      sha256: "1efa911ca7086affd35f463ca2fc1799584fb6aa89883cf0af8e3664d6a02d55"
+      sha256: abd7625e16f51f554ea244d090292945ec4d4be7bfbaf2ec8cccea568919d334
       url: "https://pub.dev"
     source: hosted
-    version: "2.3.2"
+    version: "2.3.3"
   dartx:
     dependency: transitive
     description:
@@ -314,18 +314,18 @@ packages:
     dependency: transitive
     description:
       name: flutter_gen_core
-      sha256: e8637dd6a59860f89e5e71be0a27101ec32dad1a0ed7fd879fd23b6e91d5004d
+      sha256: "8b4ff1d45d125e576e26ea99d15e0419bb3c45b53696e022880866b78bb6b830"
       url: "https://pub.dev"
     source: hosted
-    version: "5.3.1"
+    version: "5.3.2"
   flutter_gen_runner:
     dependency: "direct dev"
     description:
       name: flutter_gen_runner
-      sha256: "7de1bf4fc0439be0fef3178b6423d5c7f1f9f3a38a7c6fafe75d7f70ff4856d7"
+      sha256: fd197f8c657e79313d53d3934de602ebe604ba722a84c88ae3a43cd90428c67a
       url: "https://pub.dev"
     source: hosted
-    version: "5.3.1"
+    version: "5.3.2"
   flutter_lints:
     dependency: "direct dev"
     description:
@@ -432,10 +432,10 @@ packages:
     description:
       path: "."
       ref: main
-      resolved-ref: "2ed1524d0a8f31c344eeb0ac69a0c8db4abce430"
+      resolved-ref: "60e325074e84d7550a538ba26603d1592d23c875"
       url: "https://github.com/NikitaMasev/iot_client_starter.git"
     source: git
-    version: "1.1.8"
+    version: "1.1.11"
   iot_internal:
     dependency: transitive
     description:
@@ -450,10 +450,10 @@ packages:
     description:
       path: "."
       ref: main
-      resolved-ref: e0f8508a93e0a120ca46d810211e92acfe096da4
+      resolved-ref: ecf01b1379a344af0069d3a50a4b2b54d56afeeb
       url: "https://github.com/NikitaMasev/iot_models.git"
     source: git
-    version: "1.1.8"
+    version: "1.1.10"
   js:
     dependency: transitive
     description:

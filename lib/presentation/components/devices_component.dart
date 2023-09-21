@@ -30,11 +30,13 @@ class _DevicesComponentState extends State<DevicesComponent> {
       (final state) => state.when(
         initial: () => _controllerDevicesState.add(DevicesStateUiLoading()),
         loading: () => _controllerDevicesState.add(DevicesStateUiLoading()),
-        update: (final iotDevicesDataWrapper) => _controllerDevicesState.add(
-          DevicesStateUiSuccess(
-            iotDevicesDataWrapper: iotDevicesDataWrapper,
-          ),
-        ),
+        update: (final iotDevicesDataWrapper) {
+          _controllerDevicesState.add(
+            DevicesStateUiSuccess(
+              iotDevicesDataWrapper: iotDevicesDataWrapper,
+            ),
+          );
+        },
         errorConnection: () => _controllerDevicesState.add(
           DevicesStateUiLoading(),
         ),
@@ -108,6 +110,13 @@ class _DevicesComponentState extends State<DevicesComponent> {
                   .devices,
               iotPowerChanged: _onPowerChanged,
               deviceSelected: _onDeviceSelected,
+              //key: const Key('StreamBuilder12121'),
+              //key: const Key('DevicesBuilder'),
+/*              key: ValueKey(
+                (snap.data! as DevicesStateUiSuccess)
+                    .iotDevicesDataWrapper
+                    .hashCode,
+              ),*/
             ),
         },
       );

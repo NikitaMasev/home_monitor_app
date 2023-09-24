@@ -31,6 +31,8 @@ const ledAddressEffectsDescription = <int, String>{
   31: 'Running lights',
   32: 'Strobe',
   33: 'One color all',
+  34: 'Theater chase',
+  35: 'Theater chase rainbow',
 };
 
 String getLedAddressDescriptionByIndex(final int index) =>

@@ -9,8 +9,6 @@ Future<bool> showCustomColorPickerDialog({
     ColorPicker(
       color: startColor,
       onColorChanged: onColorChanged,
-      width: 40,
-      height: 40,
       borderRadius: 8,
       spacing: 5,
       runSpacing: 5,

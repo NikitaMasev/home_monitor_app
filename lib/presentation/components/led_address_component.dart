@@ -58,7 +58,6 @@ class _LedAddressComponentState extends State<LedAddressComponent> {
   }
 
   void _pushNewData() {
-    print('_pushNewData');
     final newLedData = widget.ledData
         .copyWithColor(
           _color,

@@ -20,43 +20,46 @@ class DeviceDecorator extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) => Card(
-      child: switch (iotDevice.typeDevice) {
-        TypeDevice.ups => DeviceUps(
-            headline: iotDevice.name,
-            upsData: iotDevice.data as UpsData,
-            key: ValueKey(iotDevice.hashCode),
-          ),
-        TypeDevice.lamp => DeviceLamp(
-            headline: iotDevice.name,
-            lampData: iotDevice.data as LampData,
-            onSwitchChanged: onSwitchChanged,
-          ),
-        TypeDevice.rgba => InkWell(
-            onTap: onTap,
-            child: DeviceRgba(
+        child: switch (iotDevice.typeDevice) {
+          TypeDevice.ups => DeviceUps(
               headline: iotDevice.name,
-              ledData: iotDevice.data as LedData,
-              onSwitchChanged: onSwitchChanged,
+              upsData: iotDevice.data as UpsData,
+              key: ValueKey(iotDevice.hashCode),
             ),
-          ),
-        TypeDevice.rgbaAddress => InkWell(
-            onTap: onTap,
-            child: DeviceRgbaAddress(
+          TypeDevice.lamp => DeviceLamp(
               headline: iotDevice.name,
-              ledData: iotDevice.data as LedData,
+              lampData: iotDevice.data as LampData,
               onSwitchChanged: onSwitchChanged,
-              key: ValueKey(iotDevice.hashCode),///TODO analyze performance hashCode
-              //key: ValueKey((iotDevice.data as LedData).hashCode ^ iotDevice.name.hashCode),
-              //key: ValueKey('${iotDevice.name}${(iotDevice.data as LedData).powerOn}'),
-              //key: ValueKey((iotDevice.data as LedData).powerOn),
-              //key: key,
-              //key: ValueKey(iotDevice.hashCode),
+              key: ValueKey(iotDevice.hashCode),
             ),
-          ),
-        TypeDevice.tempSensor => DeviceSensor(
-            headline: iotDevice.name,
-          ),
-        TypeDevice.unknown => const SizedBox.shrink(),
-      },
-    );
+          TypeDevice.rgba => InkWell(
+              onTap: onTap,
+              child: DeviceRgba(
+                headline: iotDevice.name,
+                ledData: iotDevice.data as LedData,
+                onSwitchChanged: onSwitchChanged,
+              ),
+            ),
+          TypeDevice.rgbaAddress => InkWell(
+              onTap: onTap,
+              child: DeviceRgbaAddress(
+                headline: iotDevice.name,
+                ledData: iotDevice.data as LedData,
+                onSwitchChanged: onSwitchChanged,
+                key: ValueKey(iotDevice.hashCode),
+
+                ///TODO analyze performance hashCode
+                //key: ValueKey((iotDevice.data as LedData).hashCode ^ iotDevice.name.hashCode),
+                //key: ValueKey('${iotDevice.name}${(iotDevice.data as LedData).powerOn}'),
+                //key: ValueKey((iotDevice.data as LedData).powerOn),
+                //key: key,
+                //key: ValueKey(iotDevice.hashCode),
+              ),
+            ),
+          TypeDevice.tempSensor => DeviceSensor(
+              headline: iotDevice.name,
+            ),
+          TypeDevice.unknown => const SizedBox.shrink(),
+        },
+      );
 }

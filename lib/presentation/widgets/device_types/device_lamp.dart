@@ -21,21 +21,29 @@ class DeviceLamp extends StatefulWidget {
 
 class _DeviceLampState extends State<DeviceLamp> implements SwitchProperty {
   @override
-  Widget build(final BuildContext context) => Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.only(left: 8, right: 8, top: 4),
-            child: Text(
+  Widget build(final BuildContext context) => Padding(
+        padding: const EdgeInsets.all(8),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
               widget.headline,
-              maxLines: 1,
+              maxLines: 2,
+              textAlign: TextAlign.center,
             ),
-          ),
-          Assets.svg.lamp.svg(width: 46),
-          Switch(
-            value: localSwitchState,
-            onChanged: onSwitchChanged,
-          ),
-        ],
+            Assets.svg.lamp.svg(
+              width: 56,
+              colorFilter: ColorFilter.mode(
+                Theme.of(context).colorScheme.tertiary,
+                BlendMode.srcIn,
+              ),
+            ),
+            Switch(
+              value: localSwitchState,
+              onChanged: onSwitchChanged,
+            ),
+          ],
+        ),
       );
 
   @override

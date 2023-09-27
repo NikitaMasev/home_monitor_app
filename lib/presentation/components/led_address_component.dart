@@ -68,7 +68,7 @@ class _LedAddressComponentState extends State<LedAddressComponent> {
         .copyWithId(
           _idEffect,
         );
-
+    print('${newLedData.h}:${newLedData.s}:${newLedData.v}');
     _iotDevicesBloc.add(
       IotDevicesEvent.controlDevice(
         ControlData(

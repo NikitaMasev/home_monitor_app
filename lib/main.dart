@@ -19,7 +19,7 @@ Future<void> _bootstrap(
         widgetsBinding: WidgetsFlutterBinding.ensureInitialized(),
       );
       ThemeBarController.onSplashFlow();
-      Bloc.observer = AppBlocObserver();
+      //Bloc.observer = AppBlocObserver();
       runApp(builder(FlutterNativeSplash.remove));
     },
     (final error, final stack) => log(

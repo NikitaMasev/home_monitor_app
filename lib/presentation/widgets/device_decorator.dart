@@ -24,6 +24,7 @@ class DeviceDecorator extends StatelessWidget {
         TypeDevice.ups => DeviceUps(
             headline: iotDevice.name,
             upsData: iotDevice.data as UpsData,
+            key: ValueKey(iotDevice.hashCode),
           ),
         TypeDevice.lamp => DeviceLamp(
             headline: iotDevice.name,

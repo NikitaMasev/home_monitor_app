@@ -28,7 +28,7 @@ class _DeviceRgbaAddressState extends State<DeviceRgbaAddress>
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
-              '${widget.headline} in room 4',
+              widget.headline,
               maxLines: 2,
               textAlign: TextAlign.center,
             ),

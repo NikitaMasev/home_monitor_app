@@ -13,23 +13,42 @@ class DeviceUps extends StatelessWidget {
   final UpsData upsData;
 
   @override
-  Widget build(final BuildContext context) => Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.only(left: 8, right: 8, top: 4),
-            child: Text(
+  Widget build(final BuildContext context) => Padding(
+        padding: const EdgeInsets.all(8),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
               headline,
-              maxLines: 1,
+              maxLines: 2,
+              textAlign: TextAlign.center,
             ),
-          ),
-          Assets.svg.battery.svg(width: 46),
-          Padding(
-            padding: const EdgeInsets.only(left: 8, right: 8, bottom: 4),
-            child: Text(
-              'DC:${upsData.tempUps.toInt()}C Bat:${upsData.tempAcc.toInt()}C\n'
-              'PWR:${(upsData.currentDC / 1000).toStringAsPrecision(2)}A ${upsData.voltageDC.toStringAsPrecision(2)}V',
+            Assets.svg.battery.svg(
+              width: 56,
+              colorFilter: ColorFilter.mode(
+                Theme.of(context).colorScheme.tertiary,
+                BlendMode.srcIn,
+              ),
             ),
-          ),
-        ],
+            Column(
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text('DC: ${upsData.tempUps.toInt()} C'),
+                    Text('Bat: ${upsData.tempAcc.toStringAsPrecision(3)} C'),
+                  ],
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text('PWR: ${(upsData.currentDC / 1000).toStringAsPrecision(2)} A'),
+                    Text('${upsData.voltageDC.toStringAsPrecision(3)} V'),
+                  ],
+                ),
+              ],
+            ),
+          ],
+        ),
       );
 }

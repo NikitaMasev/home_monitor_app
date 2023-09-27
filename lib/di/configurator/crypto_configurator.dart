@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:home_monitor/di/models/environments.dart';
 import 'package:iot_internal/iot_internal.dart';
 
@@ -16,10 +18,9 @@ class CryptoConfigurator {
     };
   }
 
-  (String key, String iv) _getKeyIv() => switch (_env) {
-        Env.stage => ('0123456789561011', '0123456789561011'),
-        Env.prod => ('0123456789561011', '0123456789561011'),
-        Env.dev => ('0123456789561011', '0123456789561011'),
-        Env.test => ('0123456789561011', '0123456789561011'),
-      };
+  (String key, String iv) _getKeyIv() {
+    const secKey = String.fromEnvironment('SEC_KEY');
+    const iVKey = String.fromEnvironment('SEC_IV');
+    return (secKey, iVKey);
+  }
 }

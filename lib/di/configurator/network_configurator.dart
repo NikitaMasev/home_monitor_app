@@ -38,17 +38,7 @@ class NetworkConfigurator {
               ),
           };
 
-  String _getIp() => switch (_env) {
-        Env.stage => '192.168.50.143',
-        Env.prod => const String.fromEnvironment('IP', defaultValue: '0.0.0.0'),
-        Env.dev => const String.fromEnvironment('IP', defaultValue: '0.0.0.0'),
-        Env.test => 'localhost',
-      };
+  String _getIp() => const String.fromEnvironment('IP');
 
-  String _getPort() => switch (_env) {
-        Env.stage => '5090',
-        Env.prod => const String.fromEnvironment('PORT', defaultValue: '1000'),
-        Env.dev => const String.fromEnvironment('PORT', defaultValue: '1000'),
-        Env.test => '5090',
-      };
+  String _getPort() => const String.fromEnvironment('PORT');
 }

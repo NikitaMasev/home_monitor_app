@@ -38,6 +38,7 @@ class DeviceDecorator extends StatelessWidget {
                 headline: iotDevice.name,
                 ledData: iotDevice.data as LedData,
                 onSwitchChanged: onSwitchChanged,
+                key: ValueKey(iotDevice.hashCode),
               ),
             ),
           TypeDevice.rgbaAddress => InkWell(
@@ -58,6 +59,7 @@ class DeviceDecorator extends StatelessWidget {
             ),
           TypeDevice.tempSensor => DeviceSensor(
               headline: iotDevice.name,
+              key: ValueKey(iotDevice.hashCode),
             ),
           TypeDevice.unknown => const SizedBox.shrink(),
         },

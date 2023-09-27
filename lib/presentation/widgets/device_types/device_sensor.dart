@@ -10,23 +10,31 @@ class DeviceSensor extends StatelessWidget {
   final String headline;
 
   @override
-  Widget build(final BuildContext context) => Column(
-    children: [
-      Padding(
-        padding: const EdgeInsets.only(left: 8, right: 8, top: 4),
-        child: Text(
-          headline,
-          maxLines: 1,
+  Widget build(final BuildContext context) => Padding(
+        padding: const EdgeInsets.all(8),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              headline,
+              maxLines: 2,
+              textAlign: TextAlign.center,
+            ),
+            Assets.svg.thermometer.svg(
+              width: 56,
+              colorFilter: ColorFilter.mode(
+                Theme.of(context).colorScheme.tertiary,
+                BlendMode.srcIn,
+              ),
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text('T: 28.3 C'),
+                Text('H: 43.7 %'),
+              ],
+            ),
+          ],
         ),
-      ),
-      Assets.svg.thermometer.svg(width: 46),
-      Padding(
-        padding: const EdgeInsets.only(left: 8, right: 8, bottom: 4),
-        child: Text(
-          'T:28C\n'
-              'H:38%',
-        ),
-      ),
-    ],
-  );
+      );
 }

@@ -37,6 +37,9 @@ dependencies:
   #DB
   shared_preferences: ^2.2.1
 
+  #Analytics
+  sentry_flutter: ^7.10.1
+
 dev_dependencies:
   flutter_lints: ^2.0.3
   auto_route_generator: ^7.3.1

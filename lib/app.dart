@@ -14,7 +14,7 @@ class App extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) => ConfiguratorScope(
-        env: Env.dev,
+        env: Env.prod,
         logger: true,
         initialized: initializedConfig,
         child: MaterialApp.router(

@@ -1,7 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:home_monitor/internal/router/app_router.dart';
-import 'package:home_monitor/internal/theme/theme_bar_controller.dart';
 import 'package:home_monitor/presentation/assets_paths/assets.gen.dart';
 
 class HomeConfig extends StatelessWidget {

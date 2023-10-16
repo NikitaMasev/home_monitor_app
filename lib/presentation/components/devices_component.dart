@@ -24,7 +24,6 @@ class _DevicesComponentState extends State<DevicesComponent> {
 
   @override
   void initState() {
-    print('_DevicesComponentState INITSTATE');
     _iotDevicesBloc = context.read<IotDevicesBloc>();
     _subBloc = _iotDevicesBloc.stream.listen(
       (final state) => state.when(
@@ -49,7 +48,6 @@ class _DevicesComponentState extends State<DevicesComponent> {
   @override
   void dispose() {
     _subBloc.cancel();
-    print('_DevicesComponentState DISPOSE');
     super.dispose();
   }
 

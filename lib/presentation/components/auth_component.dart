@@ -21,13 +21,32 @@ class AuthComponent extends StatefulWidget {
   State<AuthComponent> createState() => _AuthComponentState();
 }
 
-class _AuthComponentState extends State<AuthComponent> {
+class _AuthComponentState extends State<AuthComponent>
+    with WidgetsBindingObserver {
   final _controllerAuthStateUi = StreamController<AuthStateUi>();
+
   late final StreamSubscription _subBloc;
   late final AuthBloc _authBloc;
 
+  Timer? _timerUpdateAppState;
+  var _appResumed = true;
+
+  @override
+  void didChangeAppLifecycleState(final AppLifecycleState state) {
+    print('APPSTATE $state');
+    if (state == AppLifecycleState.resumed) {
+      _timerUpdateAppState = Timer(const Duration(milliseconds: 500), () {
+        _appResumed = true;
+      });
+    } else {
+      _appResumed = false;
+    }
+    super.didChangeAppLifecycleState(state);
+  }
+
   @override
   void initState() {
+    WidgetsBinding.instance.addObserver(this);
     _authBloc = context.read<AuthBloc>();
     _subBloc = _authBloc.stream.listen(
       (final state) => state.when(
@@ -37,11 +56,15 @@ class _AuthComponentState extends State<AuthComponent> {
           _controllerAuthStateUi.add(AuthStateUiSuccess());
           widget.onSuccess?.call();
         },
-        error: (final err) => _controllerAuthStateUi.add(
-          AuthStateUiError(
-            err: err.err,
-          ),
-        ),
+        error: (final err) {
+          if (_appResumed) {
+            _controllerAuthStateUi.add(
+              AuthStateUiError(
+                err: err.err,
+              ),
+            );
+          }
+        },
       ),
     );
     _authBloc.add(const AuthEvent.start());
@@ -50,7 +73,9 @@ class _AuthComponentState extends State<AuthComponent> {
 
   @override
   void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
     _subBloc.cancel();
+    _timerUpdateAppState?.cancel();
     super.dispose();
   }
 

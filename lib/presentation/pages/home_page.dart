@@ -6,6 +6,7 @@ import 'package:home_monitor/di/communicator_scope.dart';
 import 'package:home_monitor/di/models/resources.dart';
 import 'package:home_monitor/di/user_repo_scope.dart';
 import 'package:home_monitor/internal/theme/theme_bar_controller.dart';
+import 'package:home_monitor/presentation/components/app_lifecycle_resources.dart';
 import 'package:home_monitor/presentation/components/auth_component.dart';
 import 'package:home_monitor/presentation/widgets/home_config.dart';
 import 'package:provider/provider.dart';
@@ -24,14 +25,17 @@ class _HomePageState extends State<HomePage> {
     ThemeBarController.onMainFlow();
     super.initState();
   }
+
   @override
-  Widget build(final BuildContext context) => ChannelStateScope(
-        child: CommunicatorScope(
-          child: UserRepoScope(
-            child: AuthScope(
-              name: context.read<Resources>().nameDevice,
-              child: const AuthComponent(
-                childIfSuccess: HomeConfig(),
+  Widget build(final BuildContext context) => AppLifeCycleResources(
+        child: ChannelStateScope(
+          child: CommunicatorScope(
+            child: UserRepoScope(
+              child: AuthScope(
+                name: context.read<Resources>().nameDevice,
+                child: const AuthComponent(
+                  childIfSuccess: HomeConfig(),
+                ),
               ),
             ),
           ),

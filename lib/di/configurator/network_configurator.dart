@@ -13,7 +13,7 @@ class NetworkConfigurator {
   ) =>
       configCommunicator(iotChannelProvider);
 
-  Future<(IotChannelProvider, ChannelStateWatcher, Runnable)>
+  Future<(IotChannelProvider, ChannelStateWatcher, Runnable, Pausable, Resumable)>
       getChannelProviderAndStateWatcher() => switch (_env) {
             Env.stage => configChannelProvider(
                 ipClients: _getIp(),

@@ -8,6 +8,8 @@ class DataSources {
     required this.channelStateWatcher,
     required this.channelRunner,
     required this.sharedPersistent,
+    required this.pausableSources,
+    required this.resumableSources,
   });
 
   final IotCommunicatorService communicatorService;
@@ -15,4 +17,6 @@ class DataSources {
   final ChannelStateWatcher channelStateWatcher;
   final Runnable channelRunner;
   final SharedPersistent sharedPersistent;
+  final List<Pausable> pausableSources;
+  final List<Resumable> resumableSources;
 }

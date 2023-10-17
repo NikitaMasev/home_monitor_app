@@ -17,8 +17,13 @@ class DataSourcesConfigurator {
     final crypto = await cryptoConfig.getCrypto();
 
     final networkConfig = NetworkConfigurator(_env, crypto);
-    final (channelProvider, channelStateWatcher, channelRunner) =
-        await networkConfig.getChannelProviderAndStateWatcher();
+    final (
+      channelProvider,
+      channelStateWatcher,
+      channelRunner,
+      pausable,
+      resumable,
+    ) = await networkConfig.getChannelProviderAndStateWatcher();
     final communicatorService =
         await networkConfig.getCommunicatorService(channelProvider);
     final shared = await SharedPreferences.getInstance();
@@ -30,6 +35,8 @@ class DataSourcesConfigurator {
       channelStateWatcher: channelStateWatcher,
       channelRunner: channelRunner,
       sharedPersistent: sharedPersistent,
+      pausableSources: [pausable],
+      resumableSources: [resumable],
     );
   }
 }

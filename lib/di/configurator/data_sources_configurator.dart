@@ -1,8 +1,6 @@
 import 'package:home_monitor/data/sources/shared_platform_persistent_impl.dart';
-import 'package:home_monitor/di/configurator/crypto_configurator.dart';
-import 'package:home_monitor/di/configurator/network_configurator.dart';
-import 'package:home_monitor/di/models/data_sources.dart';
 import 'package:home_monitor/di/models/environments.dart';
+import 'package:iot_client_starter/iot_client_starter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class DataSourcesConfigurator {
@@ -12,31 +10,13 @@ class DataSourcesConfigurator {
 
   final Env _env;
 
-  Future<DataSources> getDataSources() async {
-    final cryptoConfig = CryptoConfigurator(_env);
-    final crypto = await cryptoConfig.getCrypto();
+  Future<SharedPersistent> sharedPersistent() async =>
+      SharedPlatformPersistentImpl(
+        shared: await SharedPreferences.getInstance(),
+      );
 
-    final networkConfig = NetworkConfigurator(_env, crypto);
-    final (
-      channelProvider,
-      channelStateWatcher,
-      channelRunner,
-      pausable,
-      resumable,
-    ) = await networkConfig.getChannelProviderAndStateWatcher();
-    final communicatorService =
-        await networkConfig.getCommunicatorService(channelProvider);
-    final shared = await SharedPreferences.getInstance();
-    final sharedPersistent = SharedPlatformPersistentImpl(shared: shared);
-
-    return DataSources(
-      communicatorService: communicatorService,
-      channelProvider: channelProvider,
-      channelStateWatcher: channelStateWatcher,
-      channelRunner: channelRunner,
-      sharedPersistent: sharedPersistent,
-      pausableSources: [pausable],
-      resumableSources: [resumable],
-    );
-  }
+  String get ipLocal => const String.fromEnvironment('IP_LOCAL');
+  String get portLocal => const String.fromEnvironment('PORT');
+  String get ipRemote => const String.fromEnvironment('IP_REMOTE');
+  String get portRemote => const String.fromEnvironment('PORT');
 }

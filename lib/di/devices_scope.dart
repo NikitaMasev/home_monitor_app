@@ -13,7 +13,8 @@ class DevicesScope extends StatelessWidget {
   @override
   Widget build(final BuildContext context) => BlocProvider<IotDevicesBloc>(
         create: (final ctx) => IotDevicesBloc(
-          ctx.read<IotCommunicatorService>(),
+          devicesRepository: ctx.read<DevicesRepository>(),
+          clientRepository: ctx.read<ClientRepository>(),
         ),
         child: child,
       );

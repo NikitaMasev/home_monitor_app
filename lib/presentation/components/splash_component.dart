@@ -7,15 +7,12 @@ import 'package:home_monitor/presentation/models/loader_state.dart';
 import 'package:home_monitor/presentation/models/splash_state_ui.dart';
 import 'package:home_monitor/presentation/widgets/loaders/loader_entity.dart';
 import 'package:iot_client_starter/iot_client_starter.dart';
-import 'package:iot_internal/iot_internal.dart';
 import 'package:provider/provider.dart';
 
 class SplashComponent extends StatefulWidget {
   const SplashComponent({
-    required this.channelRunner,
     final Key? key,
   }) : super(key: key);
-  final Runnable channelRunner;
 
   @override
   State<SplashComponent> createState() => _SplashComponentState();
@@ -24,43 +21,39 @@ class SplashComponent extends StatefulWidget {
 class _SplashComponentState extends State<SplashComponent> {
   final _controllerSplashState = StreamController<SplashStateUi>();
   late final StreamSubscription _subChannelState;
-  late final ChannelStateWatcher _channelStateWatcher;
+  late final IotStateRepository _iotStateRepository;
 
   @override
   void initState() {
-    _channelStateWatcher = context.read<ChannelStateWatcher>();
-
-    _subChannelState = _channelStateWatcher.watchState().listen(
-      (final channelState) {
-        switch (channelState) {
-          case ChannelInitial():
-            break;
-          case ChannelLoading():
-            _controllerSplashState.add(SplashUiLoading());
-            break;
-          case ChannelDisconnected():
-            _controllerSplashState
-                .add(SplashUiError(err: 'Сервер не доступен'));
-            break;
-          case ChannelError():
-            _controllerSplashState.add(
-              SplashUiError(
-                err: 'Ошибка подключения к серверу: ${channelState.error}',
-              ),
-            );
-            break;
-          case ChannelReady():
-            _controllerSplashState.add(SplashUiSuccess());
-            Future.delayed(
-              Duration.zero,
-              () => context.router.replace(const HomeRoute()),
-            );
-            break;
-        }
-      },
-    );
-    widget.channelRunner.run();
+    _iotStateRepository = context.read<IotStateRepository>();
+    _iotStateRepository.lastState().then(_handleIotState);
+    _subChannelState = _iotStateRepository.watchState().listen(_handleIotState);
     super.initState();
+  }
+
+  void _handleIotState(final IotState iotState) {
+    print('SplashComponent _handleIotState $iotState');
+    switch (iotState) {
+      case IotLoading():
+        _controllerSplashState.add(SplashUiLoading());
+        break;
+      case IotDisconnected():
+        _controllerSplashState.add(SplashUiError(err: 'Сервер не доступен'));
+        break;
+      case IotError():
+        _controllerSplashState.add(
+          SplashUiError(
+            err: 'Ошибка подключения к серверу: ${iotState.error}',
+          ),
+        );
+        break;
+      case IotReady():
+        _controllerSplashState.add(SplashUiSuccess());
+        Future.delayed(
+          Duration.zero,
+          () => context.router.replace(const HomeRoute()),
+        );
+    }
   }
 
   @override

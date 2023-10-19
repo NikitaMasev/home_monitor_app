@@ -3,8 +3,8 @@ import 'package:home_monitor/di/models/resources.dart';
 import 'package:iot_client_starter/iot_client_starter.dart';
 import 'package:provider/provider.dart';
 
-class ChannelStateScope extends StatelessWidget {
-  const ChannelStateScope({
+class DevicesRepoScope extends StatelessWidget {
+  const DevicesRepoScope({
     required this.child,
     final Key? key,
   }) : super(key: key);
@@ -12,9 +12,8 @@ class ChannelStateScope extends StatelessWidget {
   final Widget child;
 
   @override
-  Widget build(final BuildContext context) => Provider<ChannelStateWatcher>(
-        create: (final ctx) =>
-            ctx.read<Resources>().dataSources.channelStateWatcher,
-        child: child,
-      );
+  Widget build(final BuildContext context) => Provider<DevicesRepository>.value(
+    value: context.read<Resources>().repositories.devicesRepository,
+    child: child,
+  );
 }

@@ -448,10 +448,10 @@ packages:
     description:
       path: "."
       ref: main
-      resolved-ref: "32b30862fa0e63456083700ce8168537e687475a"
+      resolved-ref: b0a12b3475ff9bdf905d55a5e8e6905123f01e4c
       url: "https://github.com/NikitaMasev/iot_client_starter.git"
     source: git
-    version: "1.1.12"
+    version: "1.2.4"
   iot_internal:
     dependency: transitive
     description:
@@ -671,7 +671,7 @@ packages:
     source: hosted
     version: "1.2.3"
   rxdart:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: rxdart
       sha256: "0c7c0cedd93788d996e33041ffecda924cc54389199cde4e6a34b440f50044cb"

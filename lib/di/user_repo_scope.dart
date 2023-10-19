@@ -12,9 +12,8 @@ class UserRepoScope extends StatelessWidget {
   final Widget child;
 
   @override
-  Widget build(final BuildContext context) => Provider<UserRepository>(
-        create: (final ctx) =>
-            ctx.read<Resources>().repositories.userRepository,
+  Widget build(final BuildContext context) => Provider<UserRepository>.value(
+        value: context.read<Resources>().repositories.userRepository,
         child: child,
       );
 }

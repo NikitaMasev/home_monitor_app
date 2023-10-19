@@ -3,8 +3,8 @@ import 'package:home_monitor/di/models/resources.dart';
 import 'package:iot_client_starter/iot_client_starter.dart';
 import 'package:provider/provider.dart';
 
-class CommunicatorScope extends StatelessWidget {
-  const CommunicatorScope({
+class IotStateRepoScope extends StatelessWidget {
+  const IotStateRepoScope({
     required this.child,
     final Key? key,
   }) : super(key: key);
@@ -12,9 +12,8 @@ class CommunicatorScope extends StatelessWidget {
   final Widget child;
 
   @override
-  Widget build(final BuildContext context) => Provider<IotCommunicatorService>(
-        create: (final ctx) =>
-            ctx.read<Resources>().dataSources.communicatorService,
-        child: child,
-      );
+  Widget build(final BuildContext context) => Provider<IotStateRepository>.value(
+    value: context.read<Resources>().repositories.iotStateRepository,
+    child: child,
+  );
 }

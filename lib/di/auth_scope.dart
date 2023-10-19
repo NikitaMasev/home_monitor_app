@@ -16,9 +16,9 @@ class AuthScope extends StatelessWidget {
   Widget build(final BuildContext context) => BlocProvider<AuthBloc>(
         create: (final ctx) => AuthBloc(
           userRepository: ctx.read<UserRepository>(),
-          iotCommunicatorService: ctx.read<IotCommunicatorService>(),
           name: name,
-          channelStateWatcher: ctx.read<ChannelStateWatcher>(),
+          iotStateRepository: ctx.read<IotStateRepository>(),
+          clientRepository: ctx.read<ClientRepository>(),
         ),
         child: child,
       );

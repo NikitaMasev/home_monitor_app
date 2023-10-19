@@ -29,8 +29,8 @@ class _AppLifeCycleResourcesState extends State<AppLifeCycleResources>
   @override
   void initState() {
     WidgetsBinding.instance.addObserver(this);
-    _pausableSources = context.read<Resources>().dataSources.pausableSources;
-    _resumableSources = context.read<Resources>().dataSources.resumableSources;
+    _pausableSources = context.read<Resources>().pausableResources;
+    _resumableSources = context.read<Resources>().resumableResources;
     super.initState();
   }
 

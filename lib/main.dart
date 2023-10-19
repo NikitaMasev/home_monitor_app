@@ -14,7 +14,7 @@ void main() => _bootstrap(App.new);
 Future<void> _bootstrap(
   final Widget Function(VoidCallback) builder,
 ) async {
-  await SentryFlutter.init(
+/*  await SentryFlutter.init(
     (final options) {
       options.dsn =
           'https://b5ecd5860e2289d949a569d3ad12bf33@o4505974572318720.ingest.sentry.io/4505974944628736';
@@ -30,9 +30,9 @@ Future<void> _bootstrap(
       //Bloc.observer = AppBlocObserver();
       runApp(builder(FlutterNativeSplash.remove));
     },
-  );
+  );*/
 
-/*  runZonedGuarded<void>(
+  runZonedGuarded<void>(
     () {
       FlutterNativeSplash.preserve(
         widgetsBinding: WidgetsFlutterBinding.ensureInitialized(),
@@ -48,7 +48,7 @@ Future<void> _bootstrap(
     );
       await Sentry.captureException(error, stackTrace: stack);
     },
-  );*/
+  );
 
   FlutterError.onError = (final details) {
     Sentry.captureException(details, stackTrace: details.stack);

@@ -33,7 +33,7 @@ class _ConfiguratorScopeState extends State<ConfiguratorScope> {
   Future<void> initialization() async {
     _resources = await ResourcesConfigurator(
       env: widget.env,
-      logger: widget.logger,
+      useLogging: widget.logger,
     ).getResources();
 
     widget.initialized();

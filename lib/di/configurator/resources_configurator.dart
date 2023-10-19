@@ -9,12 +9,12 @@ import 'package:home_monitor/internal/platform/name_device_extractor.dart';
 class ResourcesConfigurator {
   ResourcesConfigurator({
     required final Env env,
-    required final bool logger,
+    required final bool useLogging,
   })  : _env = env,
-        _logger = logger;
+        _useLogging = useLogging;
 
   final Env _env;
-  final bool _logger;
+  final bool _useLogging;
 
   Future<Resources> getResources() async {
     final cryptoConfig = CryptoConfigurator(_env);
@@ -23,6 +23,7 @@ class ResourcesConfigurator {
       env: _env,
       cryptoConfigurator: cryptoConfig,
       dataSourcesConfigurator: dataSourcesConfig,
+      useLogging: _useLogging,
     );
     final userRepo = await repositoriesCreator.userRepository();
     final (
@@ -43,7 +44,7 @@ class ResourcesConfigurator {
         iotStateRepository: iotStateRepository,
       ),
       env: _env,
-      logger: _logger,
+      useLogging: _useLogging,
       nameDevice: nameDevice,
       pausableResources: [pausable],
       resumableResources: [resumable],

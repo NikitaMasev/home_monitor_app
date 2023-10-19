@@ -6,7 +6,7 @@ class Resources {
   Resources({
     required this.repositories,
     required this.env,
-    required this.logger,
+    required this.useLogging,
     required this.nameDevice,
     required this.pausableResources,
     required this.resumableResources,
@@ -16,6 +16,6 @@ class Resources {
   final List<Pausable> pausableResources;
   final List<Resumable> resumableResources;
   final Env env;
-  final bool logger;
+  final bool useLogging;
   final String nameDevice;
 }

@@ -15,7 +15,7 @@ class App extends StatelessWidget {
   @override
   Widget build(final BuildContext context) => ConfiguratorScope(
         env: Env.prod,
-        logger: true,
+        logger: false,
         initialized: initializedConfig,
         child: MaterialApp.router(
           scrollBehavior: ScrollNonStretching(),

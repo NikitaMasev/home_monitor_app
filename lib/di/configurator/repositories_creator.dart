@@ -10,11 +10,13 @@ class RepositoriesCreator {
     required this.env,
     required this.cryptoConfigurator,
     required this.dataSourcesConfigurator,
+    required this.useLogging,
   });
 
   final Env env;
   final CryptoConfigurator cryptoConfigurator;
   final DataSourcesConfigurator dataSourcesConfigurator;
+  final bool useLogging;
 
   Future<UserRepository> userRepository() async => UserRepositoryImpl(
         await dataSourcesConfigurator.sharedPersistent(),
@@ -33,6 +35,6 @@ class RepositoriesCreator {
         ipRemote: dataSourcesConfigurator.ipRemote,
         portRemote: dataSourcesConfigurator.portRemote,
         cryptoClients: await cryptoConfigurator.getCrypto(),
-        useLogging: true,
+        useLogging: useLogging,
       );
 }

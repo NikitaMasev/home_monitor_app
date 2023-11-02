@@ -33,7 +33,7 @@ class _DeviceRgbaAddressState extends State<DeviceRgbaAddress>
               textAlign: TextAlign.center,
             ),
             const Spacer(),
-            Assets.svg.led.svg(
+            Assets.svg.rgbStrip.svg(
               width: 56,
               colorFilter: ColorFilter.mode(
                 Theme.of(context).colorScheme.tertiary,

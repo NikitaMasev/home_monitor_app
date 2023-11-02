@@ -30,7 +30,7 @@ class _DeviceRgbaState extends State<DeviceRgba> implements SwitchProperty {
               maxLines: 2,
               textAlign: TextAlign.center,
             ),
-            Assets.svg.brightness.svg(
+            Assets.svg.rgb.svg(
               width: 56,
               colorFilter: ColorFilter.mode(
                 Theme.of(context).colorScheme.tertiary,

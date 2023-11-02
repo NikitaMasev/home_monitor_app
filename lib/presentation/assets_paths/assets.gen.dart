@@ -65,6 +65,12 @@ class $AssetsSvgGen {
   /// File path: assets/svg/led.svg
   SvgGenImage get led => const SvgGenImage('assets/svg/led.svg');
 
+  /// File path: assets/svg/rgb.svg
+  SvgGenImage get rgb => const SvgGenImage('assets/svg/rgb.svg');
+
+  /// File path: assets/svg/rgb_strip.svg
+  SvgGenImage get rgbStrip => const SvgGenImage('assets/svg/rgb_strip.svg');
+
   /// File path: assets/svg/thermometer.svg
   SvgGenImage get thermometer =>
       const SvgGenImage('assets/svg/thermometer.svg');
@@ -82,6 +88,8 @@ class $AssetsSvgGen {
         lamp,
         launcherMono,
         led,
+        rgb,
+        rgbStrip,
         thermometer
       ];
 }

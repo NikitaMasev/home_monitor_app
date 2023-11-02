@@ -43,7 +43,8 @@ class DevicesBuilder extends StatelessWidget {
           (final device) =>
               device.typeDevice == TypeDevice.lamp ||
               device.typeDevice == TypeDevice.rgbaAddress ||
-              device.typeDevice == TypeDevice.rgba,
+              device.typeDevice == TypeDevice.rgba ||
+              device.typeDevice == TypeDevice.ledCct,
         )
         .toList();
 

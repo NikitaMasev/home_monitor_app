@@ -11,6 +11,21 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter/services.dart';
 
+class $AssetsPngGen {
+  const $AssetsPngGen();
+
+  /// File path: assets/png/launcher_home.png
+  AssetGenImage get launcherHome =>
+      const AssetGenImage('assets/png/launcher_home.png');
+
+  /// File path: assets/png/launcher_monochrome.png
+  AssetGenImage get launcherMonochrome =>
+      const AssetGenImage('assets/png/launcher_monochrome.png');
+
+  /// List of all assets
+  List<AssetGenImage> get values => [launcherHome, launcherMonochrome];
+}
+
 class $AssetsSvgGen {
   const $AssetsSvgGen();
 
@@ -30,6 +45,9 @@ class $AssetsSvgGen {
   /// File path: assets/svg/car_battery.svg
   SvgGenImage get carBattery => const SvgGenImage('assets/svg/car_battery.svg');
 
+  /// File path: assets/svg/chandelier.svg
+  SvgGenImage get chandelier => const SvgGenImage('assets/svg/chandelier.svg');
+
   /// File path: assets/svg/iot.svg
   SvgGenImage get iot => const SvgGenImage('assets/svg/iot.svg');
 
@@ -39,6 +57,10 @@ class $AssetsSvgGen {
 
   /// File path: assets/svg/lamp.svg
   SvgGenImage get lamp => const SvgGenImage('assets/svg/lamp.svg');
+
+  /// File path: assets/svg/launcher_mono.svg
+  SvgGenImage get launcherMono =>
+      const SvgGenImage('assets/svg/launcher_mono.svg');
 
   /// File path: assets/svg/led.svg
   SvgGenImage get led => const SvgGenImage('assets/svg/led.svg');
@@ -54,9 +76,11 @@ class $AssetsSvgGen {
         bellsSelected,
         brightness,
         carBattery,
+        chandelier,
         iot,
         iotSelected,
         lamp,
+        launcherMono,
         led,
         thermometer
       ];
@@ -65,6 +89,7 @@ class $AssetsSvgGen {
 class Assets {
   Assets._();
 
+  static const $AssetsPngGen png = $AssetsPngGen();
   static const $AssetsSvgGen svg = $AssetsSvgGen();
 }
 

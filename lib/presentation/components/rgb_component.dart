@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:home_monitor/internal/led/brightness_normalizer_led_data.dart';
-import 'package:home_monitor/internal/led/color_normalizer_led_data.dart';
+import 'package:home_monitor/internal/led/led_data_copy.dart';
 import 'package:home_monitor/internal/led/led_data_normalizer_hsv.dart';
-import 'package:home_monitor/presentation/widgets/details_config/led_config.dart';
+import 'package:home_monitor/presentation/widgets/details_config/rgb_config.dart';
 import 'package:iot_client_starter/iot_client_starter.dart';
 import 'package:iot_models/iot_models.dart';
 import 'package:provider/provider.dart';
 
-class LedComponent extends StatefulWidget {
-  const LedComponent({
+class RgbComponent extends StatefulWidget {
+  const RgbComponent({
     required this.ledData,
     required this.idDevice,
     super.key,
@@ -18,10 +17,10 @@ class LedComponent extends StatefulWidget {
   final int idDevice;
 
   @override
-  State<LedComponent> createState() => _LedComponentState();
+  State<RgbComponent> createState() => _RgbComponentState();
 }
 
-class _LedComponentState extends State<LedComponent> {
+class _RgbComponentState extends State<RgbComponent> {
   late final IotDevicesBloc _iotDevicesBloc;
   late Color _color;
   late double _brightness;
@@ -72,7 +71,7 @@ class _LedComponentState extends State<LedComponent> {
   }
 
   @override
-  Widget build(final BuildContext context) => LedConfig(
+  Widget build(final BuildContext context) => RgbConfig(
         initialColor: _color,
         initialBrightness: _brightness,
         onColor: _onColorSelected,

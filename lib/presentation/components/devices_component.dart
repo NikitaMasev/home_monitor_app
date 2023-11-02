@@ -71,7 +71,7 @@ class _DevicesComponentState extends State<DevicesComponent> {
       // TODO: Handle this case.
       case TypeDevice.rgba:
         context.router.push(
-          LedDetailRoute(
+          RgbDetailRoute(
             iotDevicesBloc: _iotDevicesBloc,
             ledData: iotDevice.data as LedData,
             idDevice: iotDevice.id,
@@ -80,7 +80,7 @@ class _DevicesComponentState extends State<DevicesComponent> {
         break;
       case TypeDevice.rgbaAddress:
         context.router.push(
-          LedAddressDetailRoute(
+          RgbAddressDetailRoute(
             iotDevicesBloc: _iotDevicesBloc,
             ledData: iotDevice.data as LedData,
             idDevice: iotDevice.id,
@@ -91,6 +91,15 @@ class _DevicesComponentState extends State<DevicesComponent> {
       // TODO: Handle this case.
       case TypeDevice.unknown:
       // TODO: Handle this case.
+      case TypeDevice.ledCct:
+        context.router.push(
+          LedCctDetailRoute(
+            iotDevicesBloc: _iotDevicesBloc,
+            ledCctData: iotDevice.data as LedCctData,
+            idDevice: iotDevice.id,
+          ),
+        );
+        break;
     }
   }
 

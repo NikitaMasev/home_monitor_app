@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:home_monitor/presentation/pages/details/led_address_detail_page.dart';
-import 'package:home_monitor/presentation/pages/details/led_detail_page.dart';
+import 'package:home_monitor/presentation/pages/details/led_cct_detail_page.dart';
+import 'package:home_monitor/presentation/pages/details/rgb_address_detail_page.dart';
+import 'package:home_monitor/presentation/pages/details/rgb_detail_page.dart';
 import 'package:home_monitor/presentation/pages/devices_page.dart';
 import 'package:home_monitor/presentation/pages/home_page.dart';
 import 'package:home_monitor/presentation/pages/notifications_page.dart';
@@ -23,7 +24,8 @@ class AppRouter extends _$AppRouter {
       ],
     ),
     AutoRoute(path: '/', page: SplashRoute.page),
-    AutoRoute(path: '/led_address_detail', page: LedAddressDetailRoute.page),
-    AutoRoute(path: '/led_detail', page: LedDetailRoute.page),
+    AutoRoute(path: '/rgb_address_detail', page: RgbAddressDetailRoute.page),
+    AutoRoute(path: '/rgb_detail', page: RgbDetailRoute.page),
+    AutoRoute(path: '/led_cct_detail', page: LedCctDetailRoute.page),
   ];
 }

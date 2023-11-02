@@ -27,24 +27,13 @@ abstract class _$AppRouter extends RootStackRouter {
         child: HomePage(),
       );
     },
-    LedAddressDetailRoute.name: (routeData) {
-      final args = routeData.argsAs<LedAddressDetailRouteArgs>();
+    LedCctDetailRoute.name: (routeData) {
+      final args = routeData.argsAs<LedCctDetailRouteArgs>();
       return AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: LedAddressDetailPage(
+        child: LedCctDetailPage(
           iotDevicesBloc: args.iotDevicesBloc,
-          ledData: args.ledData,
-          idDevice: args.idDevice,
-        ),
-      );
-    },
-    LedDetailRoute.name: (routeData) {
-      final args = routeData.argsAs<LedDetailRouteArgs>();
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: LedDetailPage(
-          iotDevicesBloc: args.iotDevicesBloc,
-          ledData: args.ledData,
+          ledCctData: args.ledCctData,
           idDevice: args.idDevice,
         ),
       );
@@ -53,6 +42,28 @@ abstract class _$AppRouter extends RootStackRouter {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
         child: NotificationsPage(),
+      );
+    },
+    RgbAddressDetailRoute.name: (routeData) {
+      final args = routeData.argsAs<RgbAddressDetailRouteArgs>();
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: RgbAddressDetailPage(
+          iotDevicesBloc: args.iotDevicesBloc,
+          ledData: args.ledData,
+          idDevice: args.idDevice,
+        ),
+      );
+    },
+    RgbDetailRoute.name: (routeData) {
+      final args = routeData.argsAs<RgbDetailRouteArgs>();
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: RgbDetailPage(
+          iotDevicesBloc: args.iotDevicesBloc,
+          ledData: args.ledData,
+          idDevice: args.idDevice,
+        ),
       );
     },
     SplashRoute.name: (routeData) {
@@ -93,88 +104,45 @@ class HomeRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [LedAddressDetailPage]
-class LedAddressDetailRoute extends PageRouteInfo<LedAddressDetailRouteArgs> {
-  LedAddressDetailRoute({
+/// [LedCctDetailPage]
+class LedCctDetailRoute extends PageRouteInfo<LedCctDetailRouteArgs> {
+  LedCctDetailRoute({
     required IotDevicesBloc iotDevicesBloc,
-    required LedData ledData,
+    required LedCctData ledCctData,
     required int idDevice,
     List<PageRouteInfo>? children,
   }) : super(
-          LedAddressDetailRoute.name,
-          args: LedAddressDetailRouteArgs(
+          LedCctDetailRoute.name,
+          args: LedCctDetailRouteArgs(
             iotDevicesBloc: iotDevicesBloc,
-            ledData: ledData,
+            ledCctData: ledCctData,
             idDevice: idDevice,
           ),
           initialChildren: children,
         );
 
-  static const String name = 'LedAddressDetailRoute';
+  static const String name = 'LedCctDetailRoute';
 
-  static const PageInfo<LedAddressDetailRouteArgs> page =
-      PageInfo<LedAddressDetailRouteArgs>(name);
+  static const PageInfo<LedCctDetailRouteArgs> page =
+      PageInfo<LedCctDetailRouteArgs>(name);
 }
 
-class LedAddressDetailRouteArgs {
-  const LedAddressDetailRouteArgs({
+class LedCctDetailRouteArgs {
+  const LedCctDetailRouteArgs({
     required this.iotDevicesBloc,
-    required this.ledData,
+    required this.ledCctData,
     required this.idDevice,
   });
 
   final IotDevicesBloc iotDevicesBloc;
 
-  final LedData ledData;
+  final LedCctData ledCctData;
 
   final int idDevice;
 
   @override
   String toString() {
-    return 'LedAddressDetailRouteArgs{iotDevicesBloc: $iotDevicesBloc, ledData: $ledData, idDevice: $idDevice}';
-  }
-}
-
-/// generated route for
-/// [LedDetailPage]
-class LedDetailRoute extends PageRouteInfo<LedDetailRouteArgs> {
-  LedDetailRoute({
-    required IotDevicesBloc iotDevicesBloc,
-    required LedData ledData,
-    required int idDevice,
-    List<PageRouteInfo>? children,
-  }) : super(
-          LedDetailRoute.name,
-          args: LedDetailRouteArgs(
-            iotDevicesBloc: iotDevicesBloc,
-            ledData: ledData,
-            idDevice: idDevice,
-          ),
-          initialChildren: children,
-        );
-
-  static const String name = 'LedDetailRoute';
-
-  static const PageInfo<LedDetailRouteArgs> page =
-      PageInfo<LedDetailRouteArgs>(name);
-}
-
-class LedDetailRouteArgs {
-  const LedDetailRouteArgs({
-    required this.iotDevicesBloc,
-    required this.ledData,
-    required this.idDevice,
-  });
-
-  final IotDevicesBloc iotDevicesBloc;
-
-  final LedData ledData;
-
-  final int idDevice;
-
-  @override
-  String toString() {
-    return 'LedDetailRouteArgs{iotDevicesBloc: $iotDevicesBloc, ledData: $ledData, idDevice: $idDevice}';
+    return 'LedCctDetailRouteArgs{iotDevicesBloc: $iotDevicesBloc, ledCctData: $ledCctData, idDevice: $idDevice}';
   }
 }
 
@@ -190,6 +158,92 @@ class NotificationsRoute extends PageRouteInfo<void> {
   static const String name = 'NotificationsRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [RgbAddressDetailPage]
+class RgbAddressDetailRoute extends PageRouteInfo<RgbAddressDetailRouteArgs> {
+  RgbAddressDetailRoute({
+    required IotDevicesBloc iotDevicesBloc,
+    required LedData ledData,
+    required int idDevice,
+    List<PageRouteInfo>? children,
+  }) : super(
+          RgbAddressDetailRoute.name,
+          args: RgbAddressDetailRouteArgs(
+            iotDevicesBloc: iotDevicesBloc,
+            ledData: ledData,
+            idDevice: idDevice,
+          ),
+          initialChildren: children,
+        );
+
+  static const String name = 'RgbAddressDetailRoute';
+
+  static const PageInfo<RgbAddressDetailRouteArgs> page =
+      PageInfo<RgbAddressDetailRouteArgs>(name);
+}
+
+class RgbAddressDetailRouteArgs {
+  const RgbAddressDetailRouteArgs({
+    required this.iotDevicesBloc,
+    required this.ledData,
+    required this.idDevice,
+  });
+
+  final IotDevicesBloc iotDevicesBloc;
+
+  final LedData ledData;
+
+  final int idDevice;
+
+  @override
+  String toString() {
+    return 'RgbAddressDetailRouteArgs{iotDevicesBloc: $iotDevicesBloc, ledData: $ledData, idDevice: $idDevice}';
+  }
+}
+
+/// generated route for
+/// [RgbDetailPage]
+class RgbDetailRoute extends PageRouteInfo<RgbDetailRouteArgs> {
+  RgbDetailRoute({
+    required IotDevicesBloc iotDevicesBloc,
+    required LedData ledData,
+    required int idDevice,
+    List<PageRouteInfo>? children,
+  }) : super(
+          RgbDetailRoute.name,
+          args: RgbDetailRouteArgs(
+            iotDevicesBloc: iotDevicesBloc,
+            ledData: ledData,
+            idDevice: idDevice,
+          ),
+          initialChildren: children,
+        );
+
+  static const String name = 'RgbDetailRoute';
+
+  static const PageInfo<RgbDetailRouteArgs> page =
+      PageInfo<RgbDetailRouteArgs>(name);
+}
+
+class RgbDetailRouteArgs {
+  const RgbDetailRouteArgs({
+    required this.iotDevicesBloc,
+    required this.ledData,
+    required this.idDevice,
+  });
+
+  final IotDevicesBloc iotDevicesBloc;
+
+  final LedData ledData;
+
+  final int idDevice;
+
+  @override
+  String toString() {
+    return 'RgbDetailRouteArgs{iotDevicesBloc: $iotDevicesBloc, ledData: $ledData, idDevice: $idDevice}';
+  }
 }
 
 /// generated route for

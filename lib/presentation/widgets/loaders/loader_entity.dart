@@ -24,8 +24,8 @@ class LoaderEntity extends StatelessWidget {
                   ),
             ),
           LoaderStateLoading() => const LoadingStatus(text: 'Загрузка...'),
-          LoaderStateError() => LoadingStatus(
-              text: (snap.data! as LoaderStateError).err,
+          LoaderStateError(err: final err) => LoadingStatus(
+              text: err,
               textStyle: Theme.of(context).textTheme.bodyLarge!.copyWith(
                     color: Theme.of(context).colorScheme.error,
                   ),

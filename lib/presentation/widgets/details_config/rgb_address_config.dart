@@ -8,8 +8,8 @@ import 'package:rxdart/rxdart.dart';
 import 'package:sleek_circular_slider/sleek_circular_slider.dart';
 import 'package:widget_slider/widget_slider.dart';
 
-class LedAddressConfig extends StatefulWidget {
-  const LedAddressConfig({
+class RgbAddressConfig extends StatefulWidget {
+  const RgbAddressConfig({
     required this.initialFirstColor,
     required this.initialSecondColor,
     required this.initialBrightness,
@@ -31,10 +31,10 @@ class LedAddressConfig extends StatefulWidget {
   final ValueChanged<int> onLedEffectId;
 
   @override
-  State<LedAddressConfig> createState() => _LedAddressConfigState();
+  State<RgbAddressConfig> createState() => _RgbAddressConfigState();
 }
 
-class _LedAddressConfigState extends State<LedAddressConfig> {
+class _RgbAddressConfigState extends State<RgbAddressConfig> {
   late Color _firstSelectedColor;
   late Color _secondSelectedColor;
 

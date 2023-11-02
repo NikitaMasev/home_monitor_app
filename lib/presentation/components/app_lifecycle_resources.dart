@@ -37,10 +37,12 @@ class _AppLifeCycleResourcesState extends State<AppLifeCycleResources>
   @override
   void didChangeAppLifecycleState(final AppLifecycleState state) {
     if (state == AppLifecycleState.paused) {
-      _timerPauseSources = Timer(const Duration(minutes: 2), () {
+      _timerPauseSources?.cancel();
+      _timerPauseSources = Timer(const Duration(seconds: 10), () {
         _pausableSources.forEach((final element) => element.pause());
       });
     } else if (state == AppLifecycleState.resumed) {
+      _timerPauseSources?.cancel();
       _resumableSources.forEach((final element) => element.resume());
     }
     super.didChangeAppLifecycleState(state);

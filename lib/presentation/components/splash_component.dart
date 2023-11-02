@@ -53,6 +53,7 @@ class _SplashComponentState extends State<SplashComponent> {
           Duration.zero,
           () => context.router.replace(const HomeRoute()),
         );
+        break;
     }
   }
 

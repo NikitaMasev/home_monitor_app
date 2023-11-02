@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:home_monitor/presentation/widgets/device_types/device_lamp.dart';
+import 'package:home_monitor/presentation/widgets/device_types/device_led_cct.dart';
 import 'package:home_monitor/presentation/widgets/device_types/device_rgba.dart';
 import 'package:home_monitor/presentation/widgets/device_types/device_rgba_address.dart';
 import 'package:home_monitor/presentation/widgets/device_types/device_sensor.dart';
@@ -57,6 +58,15 @@ class DeviceDecorator extends StatelessWidget {
                 //key: ValueKey(iotDevice.hashCode),
               ),
             ),
+          TypeDevice.ledCct => InkWell(
+            onTap: onTap,
+            child: DeviceLedCct(
+              headline: iotDevice.name,
+              ledCctData: iotDevice.data as LedCctData,
+              onSwitchChanged: onSwitchChanged,
+              key: ValueKey(iotDevice.hashCode),
+            ),
+          ),
           TypeDevice.tempSensor => DeviceSensor(
               headline: iotDevice.name,
               key: ValueKey(iotDevice.hashCode),

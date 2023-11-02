@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:home_monitor/presentation/widgets/tile_color_picker.dart';
 import 'package:sleek_circular_slider/sleek_circular_slider.dart';
 
-class LedConfig extends StatefulWidget {
-  const LedConfig({
+class RgbConfig extends StatefulWidget {
+  const RgbConfig({
     required this.initialColor,
     required this.initialBrightness,
     required this.onColor,
@@ -17,10 +17,10 @@ class LedConfig extends StatefulWidget {
   final ValueChanged<double> onBrightness;
 
   @override
-  State<LedConfig> createState() => _LedConfigState();
+  State<RgbConfig> createState() => _RgbConfigState();
 }
 
-class _LedConfigState extends State<LedConfig> {
+class _RgbConfigState extends State<RgbConfig> {
   late Color selectedColor; // Color for picker in dialog using onChanged
 
   @override

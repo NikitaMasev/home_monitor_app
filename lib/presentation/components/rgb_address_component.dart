@@ -1,15 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:home_monitor/internal/led/brightness_normalizer_led_data.dart';
-import 'package:home_monitor/internal/led/color_normalizer_led_data.dart';
-import 'package:home_monitor/internal/led/led_data_copy_id.dart';
+import 'package:home_monitor/internal/led/led_data_copy.dart';
 import 'package:home_monitor/internal/led/led_data_normalizer_hsv.dart';
-import 'package:home_monitor/presentation/widgets/details_config/led_address_config.dart';
+import 'package:home_monitor/presentation/widgets/details_config/rgb_address_config.dart';
 import 'package:iot_client_starter/iot_client_starter.dart';
 import 'package:iot_models/iot_models.dart';
 import 'package:provider/provider.dart';
 
-class LedAddressComponent extends StatefulWidget {
-  const LedAddressComponent({
+class RgbAddressComponent extends StatefulWidget {
+  const RgbAddressComponent({
     required this.ledData,
     required this.idDevice,
     super.key,
@@ -19,10 +17,10 @@ class LedAddressComponent extends StatefulWidget {
   final int idDevice;
 
   @override
-  State<LedAddressComponent> createState() => _LedAddressComponentState();
+  State<RgbAddressComponent> createState() => _RgbAddressComponentState();
 }
 
-class _LedAddressComponentState extends State<LedAddressComponent> {
+class _RgbAddressComponentState extends State<RgbAddressComponent> {
   late final IotDevicesBloc _iotDevicesBloc;
   late Color _color;
   late double _brightness;
@@ -82,7 +80,7 @@ class _LedAddressComponentState extends State<LedAddressComponent> {
   }
 
   @override
-  Widget build(final BuildContext context) => LedAddressConfig(
+  Widget build(final BuildContext context) => RgbAddressConfig(
         initialFirstColor: _color,
         initialSecondColor: Colors.deepOrange,
         initialBrightness: _brightness,

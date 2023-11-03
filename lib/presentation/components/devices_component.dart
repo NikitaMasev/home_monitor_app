@@ -39,6 +39,7 @@ class _DevicesComponentState extends State<DevicesComponent> {
         errorConnection: () => _controllerDevicesState.add(
           DevicesStateUiLoading(),
         ),
+        empty: () => _controllerDevicesState.add(DevicesStateUiEmpty()),
       ),
     );
     _iotDevicesBloc.add(const IotDevicesEvent.start());
@@ -110,6 +111,9 @@ class _DevicesComponentState extends State<DevicesComponent> {
         builder: (final ctx, final snap) => switch (snap.data!) {
           DevicesStateUiLoading() => const LoadingStatus(
               text: 'Загружаем список устройств...',
+            ),
+          DevicesStateUiEmpty() => const LoadingStatus(
+              text: 'Ожидаем подключение новых устройств',
             ),
           DevicesStateUiSuccess() => DevicesBuilder(
               iotDevices: (snap.data! as DevicesStateUiSuccess)

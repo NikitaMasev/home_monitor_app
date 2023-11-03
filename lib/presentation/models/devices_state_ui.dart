@@ -4,6 +4,8 @@ sealed class DevicesStateUi {}
 
 class DevicesStateUiLoading implements DevicesStateUi {}
 
+class DevicesStateUiEmpty implements DevicesStateUi {}
+
 class DevicesStateUiSuccess implements DevicesStateUi {
   DevicesStateUiSuccess({required this.iotDevicesDataWrapper});
 

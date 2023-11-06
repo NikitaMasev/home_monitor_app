@@ -46,12 +46,12 @@ Future<void> _bootstrap(
       error.toString(),
       stackTrace: stack,
     );
-      await Sentry.captureException(error, stackTrace: stack);
+      //await Sentry.captureException(error, stackTrace: stack);
     },
   );
 
   FlutterError.onError = (final details) {
-    Sentry.captureException(details, stackTrace: details.stack);
+    //Sentry.captureException(details, stackTrace: details.stack);
     log(details.exceptionAsString(), stackTrace: details.stack);
   };
 }

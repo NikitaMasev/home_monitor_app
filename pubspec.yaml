@@ -31,7 +31,10 @@ dependencies:
   provider: ^6.0.5
 
   #Utils
-  device_info_plus: ^9.0.3
+  device_info_plus: ^9.1.0
+  r_upgrade: ^0.4.2
+  permission_handler: ^11.0.1
+  package_info_plus: ^4.2.0
 
   #DB
   shared_preferences: ^2.2.1

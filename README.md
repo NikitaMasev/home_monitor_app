@@ -1,6 +1,6 @@
 # Home monitor
 
-A new Flutter project.
+Mobile client for iot server.
 
 ## Getting Started
 

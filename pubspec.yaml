@@ -1,7 +1,7 @@
 name: home_monitor
 description: A new Flutter project.
 publish_to: 'none'
-version: 1.1.0+2
+version: 1.1.0+1
 
 environment:
   sdk: '>=3.1.0 <4.0.0'
@@ -12,6 +12,14 @@ dependencies:
   iot_client_starter:
     git:
       url: https://github.com/NikitaMasev/iot_client_starter.git
+      ref: main
+  dfa_common:
+    git:
+      url: https://github.com/NikitaMasev/dfa_common.git
+      ref: main
+  crypto_wrapper:
+    git:
+      url: https://github.com/NikitaMasev/crypto_wrapper.git
       ref: main
 
   #UI
@@ -29,6 +37,9 @@ dependencies:
 
   #DI
   provider: ^6.0.5
+
+  #Network
+  dio: ^5.3.3
 
   #Utils
   device_info_plus: ^9.1.0

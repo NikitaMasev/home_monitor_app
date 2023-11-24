@@ -47,6 +47,8 @@ dependencies:
   permission_handler: ^11.0.1
   package_info_plus: ^4.2.0
   freezed: ^2.4.5
+  path_provider: ^2.1.1
+  dart_ping: ^9.0.1
 
   #DB
   shared_preferences: ^2.2.1

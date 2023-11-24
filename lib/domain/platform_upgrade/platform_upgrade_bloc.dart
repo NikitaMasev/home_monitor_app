@@ -1,41 +1,44 @@
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:home_monitor/data/repo/app_upgrade_repository.dart';
+import 'package:home_monitor/internal/platform/services/app_upgrador_service.dart';
 
 part 'platform_upgrade_bloc.freezed.dart';
 
 @freezed
-abstract class PlatformUpgradeBlocEvent with _$PlatformUpgradeBlocEvent {
-  const factory PlatformUpgradeBlocEvent.check() = Check;
+abstract class PlatformUpgradeEvent with _$PlatformUpgradeEvent {
+  const factory PlatformUpgradeEvent.check() = Check;
 }
 
 @freezed
-abstract class PlatformUpgradeBlocState with _$PlatformUpgradeBlocState {
-  const factory PlatformUpgradeBlocState.loading() = Loading;
+abstract class PlatformUpgradeState with _$PlatformUpgradeState {
+  const factory PlatformUpgradeState.loading() = Loading;
 
-  const factory PlatformUpgradeBlocState.noNeedUpgrade() = NoNeedUpgrade;
+  const factory PlatformUpgradeState.noNeedUpgrade() = NoNeedUpgrade;
 
-  const factory PlatformUpgradeBlocState.upgradeAvailable() = UpgradeAvailable;
+  const factory PlatformUpgradeState.upgradeAvailable() = UpgradeAvailable;
 
-  const factory PlatformUpgradeBlocState.downloadingUpgrade(final int percent) =
+  const factory PlatformUpgradeState.downloadingUpgrade(final int percent) =
       DownloadingUpgrade;
 
-  const factory PlatformUpgradeBlocState.downloadingUpgradeCompleted() =
+  const factory PlatformUpgradeState.downloadingUpgradeCompleted() =
       DownloadingUpgradeCompleted;
 
-  const factory PlatformUpgradeBlocState.upgradeSuccess() = UpgradeSuccess;
+  const factory PlatformUpgradeState.upgradeSuccess() = UpgradeSuccess;
 
-  const factory PlatformUpgradeBlocState.upgradeError(final String err) =
+  const factory PlatformUpgradeState.upgradeError(final String err) =
       UpgradeError;
 
-  const factory PlatformUpgradeBlocState.error(final String err) = Error;
+  const factory PlatformUpgradeState.error(final String err) = Error;
 }
 
-class PlatformUpgradeBlocBloc
-    extends Bloc<PlatformUpgradeBlocEvent, PlatformUpgradeBlocState> {
-  PlatformUpgradeBlocBloc(this._appUpgradeRepository)
-      : super(const PlatformUpgradeBlocState.loading()) {
-    on<PlatformUpgradeBlocEvent>(
+class PlatformUpgradeBloc
+    extends Bloc<PlatformUpgradeEvent, PlatformUpgradeState> {
+  PlatformUpgradeBloc(
+    this._appUpgradeRepository,
+    this._appUpgradorService,
+  ) : super(const PlatformUpgradeState.loading()) {
+    on<PlatformUpgradeEvent>(
       (final event, final emit) => event.when(
         check: () => _check(emit),
       ),
@@ -43,21 +46,40 @@ class PlatformUpgradeBlocBloc
   }
 
   final AppUpgradeRepository _appUpgradeRepository;
-  ///TODO need abstract platform service
+  final AppUpgradorService _appUpgradorService;
 
   Future<void> _check(
-    final Emitter<PlatformUpgradeBlocState> emit,
+    final Emitter<PlatformUpgradeState> emit,
   ) async {
-    emit(const PlatformUpgradeBlocState.loading());
+    emit(const PlatformUpgradeState.loading());
 
     final needUpgrade = await _appUpgradeRepository.checkUpgrade();
-
+    print('needUpgrade $needUpgrade');
     if (!needUpgrade) {
-      emit(const PlatformUpgradeBlocState.noNeedUpgrade());
+      emit(const PlatformUpgradeState.noNeedUpgrade());
     } else {
-      emit(const PlatformUpgradeBlocState.upgradeAvailable());
+      emit(const PlatformUpgradeState.upgradeAvailable());
 
+      var bytesUpgrade = <int>[];
 
+      try {
+        bytesUpgrade = await _appUpgradeRepository.downloadLatestVersion((final progress) {
+          print('progress $progress');
+          emit(PlatformUpgradeState.downloadingUpgrade(progress));
+        });
+      } on Exception catch(e) {
+        emit(PlatformUpgradeState.error(e.toString()));
+        rethrow;
+      }
+
+      if (bytesUpgrade.isEmpty) {
+        emit(const PlatformUpgradeState.upgradeError('App upgrade bytes are empty.'));
+      } else {
+        emit(const PlatformUpgradeState.downloadingUpgradeCompleted());
+        print('upgrade ${bytesUpgrade.length}');
+        await _appUpgradorService.upgrade(bytesUpgrade);
+        emit(const PlatformUpgradeState.upgradeSuccess());
+      }
     }
   }
 }

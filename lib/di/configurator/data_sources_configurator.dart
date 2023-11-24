@@ -1,22 +1,77 @@
+import 'package:dfa_common/dfa_common.dart';
+import 'package:dio/dio.dart';
+import 'package:home_monitor/data/sources/dfa/dfa_client.dart';
+import 'package:home_monitor/data/sources/dfa/dfa_client_impl.dart';
 import 'package:home_monitor/data/sources/shared_platform_persistent_impl.dart';
+import 'package:home_monitor/di/configurator/crypto_configurator.dart';
+import 'package:home_monitor/di/configurator/utils_configurator.dart';
 import 'package:home_monitor/di/models/environments.dart';
+import 'package:home_monitor/internal/platform/build_abi_extractor.dart';
 import 'package:iot_client_starter/iot_client_starter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class DataSourcesConfigurator {
-  DataSourcesConfigurator(
-    this._env,
-  );
+  DataSourcesConfigurator({
+    required final Env env,
+    required final CryptoConfigurator cryptoConfigurator,
+    required final BuildAbiExtractor buildAbiExtractor,
+    required final UtilsConfigurator utilsConfigurator,
+  })  : _env = env,
+        _cryptoConfigurator = cryptoConfigurator,
+        _buildAbiExtractor = buildAbiExtractor,
+        _utilsConfigurator = utilsConfigurator;
 
   final Env _env;
+  final CryptoConfigurator _cryptoConfigurator;
+  final BuildAbiExtractor _buildAbiExtractor;
+  final UtilsConfigurator _utilsConfigurator;
 
   Future<SharedPersistent> sharedPersistent() async =>
       SharedPlatformPersistentImpl(
         shared: await SharedPreferences.getInstance(),
       );
 
+  Future<Map<String, dynamic>> _headersDioDfa() async {
+    final crypto = await _cryptoConfigurator.getCryptoUpgrade();
+    final (build, abi) = await _buildAbiExtractor.getBuildAbi();
+    final buildEncr = crypto.encrypt(build);
+    final abiEncr = crypto.encrypt(abi);
+
+    return <String, dynamic>{
+      RequestUpgradeHeaders.buildVersion: buildEncr,
+      RequestUpgradeHeaders.abi: abiEncr,
+    };
+  }
+
+  Future<Dio> _dioDfaRemote() async => Dio(
+        BaseOptions(
+          baseUrl: 'http://$ipRemote:$portUpgrade',
+          headers: await _headersDioDfa(),
+        ),
+      );
+
+  Future<Dio> _dioDfaLocal() async => Dio(
+        BaseOptions(
+          baseUrl: 'http://$ipLocal:$portUpgrade',
+          headers: await _headersDioDfa(),
+        ),
+      );
+
+  Future<DfaClient> dfaClientRemote() async => DfaClientImpl(
+        dio: await _dioDfaRemote(),
+        ping: await _utilsConfigurator.configPing(ipRemote, 3),
+      );
+
+  Future<DfaClient> dfaClientLocal() async => DfaClientImpl(
+        dio: await _dioDfaLocal(),
+        ping: await _utilsConfigurator.configPing(ipRemote, 3),
+      );
+
   String get ipLocal => const String.fromEnvironment('IP_LOCAL');
-  String get portLocal => const String.fromEnvironment('PORT');
+
   String get ipRemote => const String.fromEnvironment('IP_REMOTE');
-  String get portRemote => const String.fromEnvironment('PORT');
+
+  String get port => const String.fromEnvironment('PORT');
+
+  String get portUpgrade => const String.fromEnvironment('PORT_UPGRADE');
 }

@@ -14,8 +14,10 @@ final class AppUpgradeRepositoryImpl implements AppUpgradeRepository {
   @override
   Future<bool> checkUpgrade() async {
     if (await _dfaClientLocal.available()) {
+      print('CHECK LOCAL');
       return _dfaClientLocal.checkUpgrade();
     } else {
+      print('CHECK REMOTE');
       return _dfaClientRemote.checkUpgrade();
     }
   }
@@ -25,8 +27,10 @@ final class AppUpgradeRepositoryImpl implements AppUpgradeRepository {
     final void Function(int percent) onProgress,
   ) async {
     if (await _dfaClientLocal.available()) {
+      print('downloadLatestVersion LOCAL');
       return _dfaClientLocal.downloadLatestVersion(onProgress);
     } else {
+      print('downloadLatestVersion REMOTE');
       return _dfaClientRemote.downloadLatestVersion(onProgress);
     }
   }

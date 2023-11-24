@@ -1,17 +1,15 @@
+import 'dart:async';
 import 'dart:io' show Platform;
 
-import 'package:device_info_plus/device_info_plus.dart';
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:iot_internal/iot_internal.dart';
-import 'package:package_info_plus/package_info_plus.dart';
+import 'package:home_monitor/domain/platform_upgrade/platform_upgrade_bloc.dart';
 import 'package:permission_handler/permission_handler.dart';
-import 'package:r_upgrade/r_upgrade.dart';
+import 'package:provider/provider.dart';
 
 class AppUpgradeComponent extends StatefulWidget {
   const AppUpgradeComponent({
-    super.key,
     required this.child,
+    super.key,
   });
 
   final Widget child;
@@ -21,58 +19,48 @@ class AppUpgradeComponent extends StatefulWidget {
 }
 
 class _AppUpgradeComponentState extends State<AppUpgradeComponent> {
+  late final PlatformUpgradeBloc _platformUpgradeBloc;
+  StreamSubscription? _subBloc;
+
+  @override
+  void dispose() {
+    _subBloc?.cancel();
+    super.dispose();
+  }
+
   @override
   void initState() {
+    _platformUpgradeBloc = context.read<PlatformUpgradeBloc>();
     _updateFlow();
     super.initState();
   }
 
+  void _subscribePlatformUpgradeBloc() {
+    _subBloc = _platformUpgradeBloc.stream.listen(
+      (final state) => state.when(
+        loading: () {},
+        noNeedUpgrade: () {},
+        upgradeAvailable: () {},
+        downloadingUpgrade: (final progress) {
+          print(progress);
+        },
+        downloadingUpgradeCompleted: () {},
+        upgradeSuccess: () {},
+        upgradeError: (final err) {},
+        error: (final err) {},
+      ),
+    );
+  }
+
   Future<void> _updateFlow() async {
-    await Future.delayed(Duration(seconds: 5));
+    await Future.delayed(const Duration(seconds: 5));
     await Permission.requestInstallPackages
         .request()
         .then((final permissionStatus) async {
       if (permissionStatus.isGranted) {
         if (Platform.isAndroid) {
-          final deviceInfoPlugin = DeviceInfoPlugin();
-          final info = await deviceInfoPlugin.androidInfo;
-          final packageInfo = await PackageInfo.fromPlatform();
-
-          final crypto =
-              CryptoImpl(key: '0', iv: '0');
-
-          final valueBuildEncr = crypto.encrypt(packageInfo.buildNumber);
-          final valueAbiEncr = crypto.encrypt(info.supportedAbis.first);
-
-          print(valueBuildEncr);
-          print(valueAbiEncr);
-
-          final dio = Dio(
-            BaseOptions(
-              headers: {
-                'buildversion': valueBuildEncr,
-              },
-            ),
-          );
-
-          final needUpgrade = await dio.get(
-            'http://192.168.50.143:4500/needUpgrade',
-          );
-          print(needUpgrade);
-
-          if (bool.parse(needUpgrade.data.toString())) {
-            await RUpgrade.upgrade(
-              header: {
-                'abi': valueAbiEncr,
-              },
-              useDownloadManager: true,
-              'http://192.168.50.143:4500/upgrade',
-              fileName: 'home_monitor_app${int.parse(packageInfo.buildNumber)+1}.apk',
-            );
-            RUpgrade.stream.listen((final event) {
-              print(event.percent);
-            });
-          }
+          _subscribePlatformUpgradeBloc();
+          _platformUpgradeBloc.add(const PlatformUpgradeEvent.check());
         }
       }
     });

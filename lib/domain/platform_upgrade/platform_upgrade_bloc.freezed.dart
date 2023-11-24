@@ -15,7 +15,7 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-mixin _$PlatformUpgradeBlocEvent {
+mixin _$PlatformUpgradeEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() check,
@@ -51,17 +51,17 @@ mixin _$PlatformUpgradeBlocEvent {
 }
 
 /// @nodoc
-abstract class $PlatformUpgradeBlocEventCopyWith<$Res> {
-  factory $PlatformUpgradeBlocEventCopyWith(PlatformUpgradeBlocEvent value,
-          $Res Function(PlatformUpgradeBlocEvent) then) =
-      _$PlatformUpgradeBlocEventCopyWithImpl<$Res, PlatformUpgradeBlocEvent>;
+abstract class $PlatformUpgradeEventCopyWith<$Res> {
+  factory $PlatformUpgradeEventCopyWith(PlatformUpgradeEvent value,
+          $Res Function(PlatformUpgradeEvent) then) =
+      _$PlatformUpgradeEventCopyWithImpl<$Res, PlatformUpgradeEvent>;
 }
 
 /// @nodoc
-class _$PlatformUpgradeBlocEventCopyWithImpl<$Res,
-        $Val extends PlatformUpgradeBlocEvent>
-    implements $PlatformUpgradeBlocEventCopyWith<$Res> {
-  _$PlatformUpgradeBlocEventCopyWithImpl(this._value, this._then);
+class _$PlatformUpgradeEventCopyWithImpl<$Res,
+        $Val extends PlatformUpgradeEvent>
+    implements $PlatformUpgradeEventCopyWith<$Res> {
+  _$PlatformUpgradeEventCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -78,7 +78,7 @@ abstract class _$$CheckImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$CheckImplCopyWithImpl<$Res>
-    extends _$PlatformUpgradeBlocEventCopyWithImpl<$Res, _$CheckImpl>
+    extends _$PlatformUpgradeEventCopyWithImpl<$Res, _$CheckImpl>
     implements _$$CheckImplCopyWith<$Res> {
   __$$CheckImplCopyWithImpl(
       _$CheckImpl _value, $Res Function(_$CheckImpl) _then)
@@ -92,7 +92,7 @@ class _$CheckImpl implements Check {
 
   @override
   String toString() {
-    return 'PlatformUpgradeBlocEvent.check()';
+    return 'PlatformUpgradeEvent.check()';
   }
 
   @override
@@ -161,12 +161,12 @@ class _$CheckImpl implements Check {
   }
 }
 
-abstract class Check implements PlatformUpgradeBlocEvent {
+abstract class Check implements PlatformUpgradeEvent {
   const factory Check() = _$CheckImpl;
 }
 
 /// @nodoc
-mixin _$PlatformUpgradeBlocState {
+mixin _$PlatformUpgradeState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
@@ -247,17 +247,17 @@ mixin _$PlatformUpgradeBlocState {
 }
 
 /// @nodoc
-abstract class $PlatformUpgradeBlocStateCopyWith<$Res> {
-  factory $PlatformUpgradeBlocStateCopyWith(PlatformUpgradeBlocState value,
-          $Res Function(PlatformUpgradeBlocState) then) =
-      _$PlatformUpgradeBlocStateCopyWithImpl<$Res, PlatformUpgradeBlocState>;
+abstract class $PlatformUpgradeStateCopyWith<$Res> {
+  factory $PlatformUpgradeStateCopyWith(PlatformUpgradeState value,
+          $Res Function(PlatformUpgradeState) then) =
+      _$PlatformUpgradeStateCopyWithImpl<$Res, PlatformUpgradeState>;
 }
 
 /// @nodoc
-class _$PlatformUpgradeBlocStateCopyWithImpl<$Res,
-        $Val extends PlatformUpgradeBlocState>
-    implements $PlatformUpgradeBlocStateCopyWith<$Res> {
-  _$PlatformUpgradeBlocStateCopyWithImpl(this._value, this._then);
+class _$PlatformUpgradeStateCopyWithImpl<$Res,
+        $Val extends PlatformUpgradeState>
+    implements $PlatformUpgradeStateCopyWith<$Res> {
+  _$PlatformUpgradeStateCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -274,7 +274,7 @@ abstract class _$$LoadingImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$LoadingImplCopyWithImpl<$Res>
-    extends _$PlatformUpgradeBlocStateCopyWithImpl<$Res, _$LoadingImpl>
+    extends _$PlatformUpgradeStateCopyWithImpl<$Res, _$LoadingImpl>
     implements _$$LoadingImplCopyWith<$Res> {
   __$$LoadingImplCopyWithImpl(
       _$LoadingImpl _value, $Res Function(_$LoadingImpl) _then)
@@ -288,7 +288,7 @@ class _$LoadingImpl implements Loading {
 
   @override
   String toString() {
-    return 'PlatformUpgradeBlocState.loading()';
+    return 'PlatformUpgradeState.loading()';
   }
 
   @override
@@ -402,7 +402,7 @@ class _$LoadingImpl implements Loading {
   }
 }
 
-abstract class Loading implements PlatformUpgradeBlocState {
+abstract class Loading implements PlatformUpgradeState {
   const factory Loading() = _$LoadingImpl;
 }
 
@@ -415,7 +415,7 @@ abstract class _$$NoNeedUpgradeImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$NoNeedUpgradeImplCopyWithImpl<$Res>
-    extends _$PlatformUpgradeBlocStateCopyWithImpl<$Res, _$NoNeedUpgradeImpl>
+    extends _$PlatformUpgradeStateCopyWithImpl<$Res, _$NoNeedUpgradeImpl>
     implements _$$NoNeedUpgradeImplCopyWith<$Res> {
   __$$NoNeedUpgradeImplCopyWithImpl(
       _$NoNeedUpgradeImpl _value, $Res Function(_$NoNeedUpgradeImpl) _then)
@@ -429,7 +429,7 @@ class _$NoNeedUpgradeImpl implements NoNeedUpgrade {
 
   @override
   String toString() {
-    return 'PlatformUpgradeBlocState.noNeedUpgrade()';
+    return 'PlatformUpgradeState.noNeedUpgrade()';
   }
 
   @override
@@ -543,7 +543,7 @@ class _$NoNeedUpgradeImpl implements NoNeedUpgrade {
   }
 }
 
-abstract class NoNeedUpgrade implements PlatformUpgradeBlocState {
+abstract class NoNeedUpgrade implements PlatformUpgradeState {
   const factory NoNeedUpgrade() = _$NoNeedUpgradeImpl;
 }
 
@@ -556,7 +556,7 @@ abstract class _$$UpgradeAvailableImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$UpgradeAvailableImplCopyWithImpl<$Res>
-    extends _$PlatformUpgradeBlocStateCopyWithImpl<$Res, _$UpgradeAvailableImpl>
+    extends _$PlatformUpgradeStateCopyWithImpl<$Res, _$UpgradeAvailableImpl>
     implements _$$UpgradeAvailableImplCopyWith<$Res> {
   __$$UpgradeAvailableImplCopyWithImpl(_$UpgradeAvailableImpl _value,
       $Res Function(_$UpgradeAvailableImpl) _then)
@@ -570,7 +570,7 @@ class _$UpgradeAvailableImpl implements UpgradeAvailable {
 
   @override
   String toString() {
-    return 'PlatformUpgradeBlocState.upgradeAvailable()';
+    return 'PlatformUpgradeState.upgradeAvailable()';
   }
 
   @override
@@ -684,7 +684,7 @@ class _$UpgradeAvailableImpl implements UpgradeAvailable {
   }
 }
 
-abstract class UpgradeAvailable implements PlatformUpgradeBlocState {
+abstract class UpgradeAvailable implements PlatformUpgradeState {
   const factory UpgradeAvailable() = _$UpgradeAvailableImpl;
 }
 
@@ -699,8 +699,7 @@ abstract class _$$DownloadingUpgradeImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$DownloadingUpgradeImplCopyWithImpl<$Res>
-    extends _$PlatformUpgradeBlocStateCopyWithImpl<$Res,
-        _$DownloadingUpgradeImpl>
+    extends _$PlatformUpgradeStateCopyWithImpl<$Res, _$DownloadingUpgradeImpl>
     implements _$$DownloadingUpgradeImplCopyWith<$Res> {
   __$$DownloadingUpgradeImplCopyWithImpl(_$DownloadingUpgradeImpl _value,
       $Res Function(_$DownloadingUpgradeImpl) _then)
@@ -730,7 +729,7 @@ class _$DownloadingUpgradeImpl implements DownloadingUpgrade {
 
   @override
   String toString() {
-    return 'PlatformUpgradeBlocState.downloadingUpgrade(percent: $percent)';
+    return 'PlatformUpgradeState.downloadingUpgrade(percent: $percent)';
   }
 
   @override
@@ -853,7 +852,7 @@ class _$DownloadingUpgradeImpl implements DownloadingUpgrade {
   }
 }
 
-abstract class DownloadingUpgrade implements PlatformUpgradeBlocState {
+abstract class DownloadingUpgrade implements PlatformUpgradeState {
   const factory DownloadingUpgrade(final int percent) =
       _$DownloadingUpgradeImpl;
 
@@ -873,7 +872,7 @@ abstract class _$$DownloadingUpgradeCompletedImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$DownloadingUpgradeCompletedImplCopyWithImpl<$Res>
-    extends _$PlatformUpgradeBlocStateCopyWithImpl<$Res,
+    extends _$PlatformUpgradeStateCopyWithImpl<$Res,
         _$DownloadingUpgradeCompletedImpl>
     implements _$$DownloadingUpgradeCompletedImplCopyWith<$Res> {
   __$$DownloadingUpgradeCompletedImplCopyWithImpl(
@@ -889,7 +888,7 @@ class _$DownloadingUpgradeCompletedImpl implements DownloadingUpgradeCompleted {
 
   @override
   String toString() {
-    return 'PlatformUpgradeBlocState.downloadingUpgradeCompleted()';
+    return 'PlatformUpgradeState.downloadingUpgradeCompleted()';
   }
 
   @override
@@ -1004,7 +1003,7 @@ class _$DownloadingUpgradeCompletedImpl implements DownloadingUpgradeCompleted {
   }
 }
 
-abstract class DownloadingUpgradeCompleted implements PlatformUpgradeBlocState {
+abstract class DownloadingUpgradeCompleted implements PlatformUpgradeState {
   const factory DownloadingUpgradeCompleted() =
       _$DownloadingUpgradeCompletedImpl;
 }
@@ -1018,7 +1017,7 @@ abstract class _$$UpgradeSuccessImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$UpgradeSuccessImplCopyWithImpl<$Res>
-    extends _$PlatformUpgradeBlocStateCopyWithImpl<$Res, _$UpgradeSuccessImpl>
+    extends _$PlatformUpgradeStateCopyWithImpl<$Res, _$UpgradeSuccessImpl>
     implements _$$UpgradeSuccessImplCopyWith<$Res> {
   __$$UpgradeSuccessImplCopyWithImpl(
       _$UpgradeSuccessImpl _value, $Res Function(_$UpgradeSuccessImpl) _then)
@@ -1032,7 +1031,7 @@ class _$UpgradeSuccessImpl implements UpgradeSuccess {
 
   @override
   String toString() {
-    return 'PlatformUpgradeBlocState.upgradeSuccess()';
+    return 'PlatformUpgradeState.upgradeSuccess()';
   }
 
   @override
@@ -1146,7 +1145,7 @@ class _$UpgradeSuccessImpl implements UpgradeSuccess {
   }
 }
 
-abstract class UpgradeSuccess implements PlatformUpgradeBlocState {
+abstract class UpgradeSuccess implements PlatformUpgradeState {
   const factory UpgradeSuccess() = _$UpgradeSuccessImpl;
 }
 
@@ -1161,7 +1160,7 @@ abstract class _$$UpgradeErrorImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$UpgradeErrorImplCopyWithImpl<$Res>
-    extends _$PlatformUpgradeBlocStateCopyWithImpl<$Res, _$UpgradeErrorImpl>
+    extends _$PlatformUpgradeStateCopyWithImpl<$Res, _$UpgradeErrorImpl>
     implements _$$UpgradeErrorImplCopyWith<$Res> {
   __$$UpgradeErrorImplCopyWithImpl(
       _$UpgradeErrorImpl _value, $Res Function(_$UpgradeErrorImpl) _then)
@@ -1191,7 +1190,7 @@ class _$UpgradeErrorImpl implements UpgradeError {
 
   @override
   String toString() {
-    return 'PlatformUpgradeBlocState.upgradeError(err: $err)';
+    return 'PlatformUpgradeState.upgradeError(err: $err)';
   }
 
   @override
@@ -1313,7 +1312,7 @@ class _$UpgradeErrorImpl implements UpgradeError {
   }
 }
 
-abstract class UpgradeError implements PlatformUpgradeBlocState {
+abstract class UpgradeError implements PlatformUpgradeState {
   const factory UpgradeError(final String err) = _$UpgradeErrorImpl;
 
   String get err;
@@ -1333,7 +1332,7 @@ abstract class _$$ErrorImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$ErrorImplCopyWithImpl<$Res>
-    extends _$PlatformUpgradeBlocStateCopyWithImpl<$Res, _$ErrorImpl>
+    extends _$PlatformUpgradeStateCopyWithImpl<$Res, _$ErrorImpl>
     implements _$$ErrorImplCopyWith<$Res> {
   __$$ErrorImplCopyWithImpl(
       _$ErrorImpl _value, $Res Function(_$ErrorImpl) _then)
@@ -1363,7 +1362,7 @@ class _$ErrorImpl implements Error {
 
   @override
   String toString() {
-    return 'PlatformUpgradeBlocState.error(err: $err)';
+    return 'PlatformUpgradeState.error(err: $err)';
   }
 
   @override
@@ -1485,7 +1484,7 @@ class _$ErrorImpl implements Error {
   }
 }
 
-abstract class Error implements PlatformUpgradeBlocState {
+abstract class Error implements PlatformUpgradeState {
   const factory Error(final String err) = _$ErrorImpl;
 
   String get err;

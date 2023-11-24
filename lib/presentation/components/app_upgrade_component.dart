@@ -42,7 +42,7 @@ class _AppUpgradeComponentState extends State<AppUpgradeComponent> {
         noNeedUpgrade: () {},
         upgradeAvailable: () {},
         downloadingUpgrade: (final progress) {
-          print(progress);
+          print('progress $progress');
         },
         downloadingUpgradeCompleted: () {},
         upgradeSuccess: () {},

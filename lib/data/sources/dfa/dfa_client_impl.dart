@@ -1,6 +1,7 @@
 import 'dart:async';
+import 'dart:convert';
+import 'dart:io';
 
-import 'package:dart_ping/dart_ping.dart';
 import 'package:dfa_common/dfa_common.dart';
 import 'package:dio/dio.dart';
 import 'package:home_monitor/data/sources/dfa/dfa_client.dart';
@@ -8,19 +9,17 @@ import 'package:home_monitor/data/sources/dfa/dfa_client.dart';
 final class DfaClientImpl implements DfaClient {
   DfaClientImpl({
     required final Dio dio,
-    required final Ping ping,
-  })  : _dio = dio,
-        _ping = ping;
+  })  : _dio = dio;
 
   final Dio _dio;
-  final Ping _ping;
 
   @override
   Future<bool> checkUpgrade() async {
     final needUpgrade = await _dio.get(
       '/${RequestUpgradePaths.checkUpgrade}',
     );
-    return bool.parse(needUpgrade.data.toString());
+    final decoded = utf8.decode(needUpgrade.data as List<int>);
+    return bool.parse(decoded);
   }
 
   @override
@@ -48,12 +47,18 @@ final class DfaClientImpl implements DfaClient {
   @override
   Future<bool> available() async {
     final completer = Completer<bool>();
-    StreamSubscription? sub;
+    final noScheme = _dio.options.baseUrl.split('//').last;
+    final ipAndPort = noScheme.split(':');
 
-    sub = _ping.stream.listen((final event) {
-      print(event);
-      completer.complete(event.error == null);
-      sub?.cancel();
+    await Socket.connect(
+      ipAndPort.first,
+      int.parse(ipAndPort.last),
+      timeout: const Duration(seconds: 2),
+    ).then((final socket) {
+      socket.destroy();
+      completer.complete(true);
+    }).catchError((final error) {
+      completer.complete(false);
     });
 
     return completer.future;

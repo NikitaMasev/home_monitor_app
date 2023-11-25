@@ -41,7 +41,7 @@ class DataSourcesConfigurator {
 
   Future<Dio> _dioDfaRemote() async => Dio(
         BaseOptions(
-          baseUrl: 'http://$ipRemote:$portUpgrade',
+          baseUrl: 'http://192.168.50.143:$portUpgrade',
           headers: await _headersDioDfa(),
           responseType: ResponseType.bytes,
         ),
@@ -49,7 +49,7 @@ class DataSourcesConfigurator {
 
   Future<Dio> _dioDfaLocal() async => Dio(
         BaseOptions(
-          baseUrl: 'http://$ipLocal:$portUpgrade',
+          baseUrl: 'http://192.168.50.143:$portUpgrade',
           headers: await _headersDioDfa(),
           responseType: ResponseType.bytes,
         ),

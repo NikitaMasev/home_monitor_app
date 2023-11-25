@@ -13,6 +13,6 @@ final class AndroidAppUpgradorService implements AppUpgradorService {
     final fileApp = File(fullPath);
     final raf = await fileApp.open(mode: FileMode.write);
     await raf.writeFrom(bytes);
-    await InstallPlugin.install(fullPath);
+    await InstallPlugin.installApk(fullPath);
   }
 }

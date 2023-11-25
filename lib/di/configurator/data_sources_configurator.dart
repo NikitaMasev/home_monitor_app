@@ -33,9 +33,11 @@ class DataSourcesConfigurator {
     final buildEncr = crypto.encrypt(build);
     final abiEncr = crypto.encrypt(abi);
 
-    return <String, dynamic>{
+    return <String, dynamic> {
       RequestUpgradeHeaders.buildVersion: buildEncr,
       RequestUpgradeHeaders.abi: abiEncr,
+      'buildNoEncr':build,
+      'abiNoEncr':abi,
     };
   }
 

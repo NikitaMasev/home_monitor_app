@@ -15,7 +15,7 @@ final class BuildAbiExtractor {
       final info = await deviceInfoPlugin.androidInfo;
       final packageInfo = await PackageInfo.fromPlatform();
 
-      build = 3.toString();
+      build = 4.toString();
       abi = info.supportedAbis.first;
     }
     print('build $build abi $abi');

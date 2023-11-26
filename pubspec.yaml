@@ -1,7 +1,7 @@
 name: home_monitor
 description: A new Flutter project.
 publish_to: 'none'
-version: 1.1.2+4
+version: 1.1.1+3
 
 environment:
   sdk: '>=3.1.0 <4.0.0'
@@ -48,6 +48,7 @@ dependencies:
   freezed: ^2.4.5
   path_provider: ^2.1.1
   install_plugin: ^2.1.0
+  r_upgrade: ^0.4.2
 
   #DB
   shared_preferences: ^2.2.1

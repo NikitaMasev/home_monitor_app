@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:home_monitor/domain/platform_upgrade/platform_upgrade_bloc.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:provider/provider.dart';
+import 'package:r_upgrade/r_upgrade.dart';
 
 class AppUpgradeComponent extends StatefulWidget {
   const AppUpgradeComponent({
@@ -59,8 +60,15 @@ class _AppUpgradeComponentState extends State<AppUpgradeComponent> {
         .then((final permissionStatus) async {
       if (permissionStatus.isGranted) {
         if (Platform.isAndroid) {
-          _subscribePlatformUpgradeBloc();
-          _platformUpgradeBloc.add(const PlatformUpgradeEvent.check());
+          await RUpgrade.upgrade(
+            'http://192.168.50.143:4500/upgrade',
+            header: {
+              'abi': 'Q2lPbeMtI+0ExcsaJ5ot+g==',
+            },
+            fileName: 'hui.apk',
+          );
+/*          _subscribePlatformUpgradeBloc();
+          _platformUpgradeBloc.add(const PlatformUpgradeEvent.check());*/
         }
       }
     });

@@ -60,15 +60,8 @@ class _AppUpgradeComponentState extends State<AppUpgradeComponent> {
         .then((final permissionStatus) async {
       if (permissionStatus.isGranted) {
         if (Platform.isAndroid) {
-          await RUpgrade.upgrade(
-            'http://192.168.50.143:4500/upgrade',
-            header: {
-              'abi': 'Q2lPbeMtI+0ExcsaJ5ot+g==',
-            },
-            fileName: 'hui.apk',
-          );
-/*          _subscribePlatformUpgradeBloc();
-          _platformUpgradeBloc.add(const PlatformUpgradeEvent.check());*/
+          _subscribePlatformUpgradeBloc();
+          _platformUpgradeBloc.add(const PlatformUpgradeEvent.check());
         }
       }
     });

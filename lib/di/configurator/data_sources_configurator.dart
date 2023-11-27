@@ -29,7 +29,7 @@ class DataSourcesConfigurator {
 
   Future<Map<String, dynamic>> _headersDioDfa() async {
     final crypto = await _cryptoConfigurator.getCryptoUpgrade();
-    final (build, abi) = await _buildAbiExtractor.getBuildAbi();
+    final (build, abi, buildFromLib) = await _buildAbiExtractor.getBuildAbi();
     final buildEncr = crypto.encrypt(build);
     final abiEncr = crypto.encrypt(abi);
 
@@ -38,12 +38,13 @@ class DataSourcesConfigurator {
       RequestUpgradeHeaders.abi: abiEncr,
       'buildNoEncr':build,
       'abiNoEncr':abi,
+      'buildFromLib': buildFromLib,
     };
   }
 
   Future<Dio> _dioDfaRemote() async => Dio(
         BaseOptions(
-          baseUrl: 'http://192.168.50.143:$portUpgrade',
+          baseUrl: 'http://$ipRemote:$portUpgrade',
           headers: await _headersDioDfa(),
           responseType: ResponseType.bytes,
         ),
@@ -51,7 +52,7 @@ class DataSourcesConfigurator {
 
   Future<Dio> _dioDfaLocal() async => Dio(
         BaseOptions(
-          baseUrl: 'http://192.168.50.143:$portUpgrade',
+          baseUrl: 'http://$ipLocal:$portUpgrade',
           headers: await _headersDioDfa(),
           responseType: ResponseType.bytes,
         ),

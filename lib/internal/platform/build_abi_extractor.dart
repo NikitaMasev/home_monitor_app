@@ -6,7 +6,8 @@ import 'package:package_info_plus/package_info_plus.dart';
 final class BuildAbiExtractor {
   const BuildAbiExtractor();
 
-  Future<(String, String)> getBuildAbi() async {
+  Future<(String, String, String)> getBuildAbi() async {
+    var buildFromLib = '';
     var build = '';
     var abi = '';
 
@@ -15,10 +16,10 @@ final class BuildAbiExtractor {
       final info = await deviceInfoPlugin.androidInfo;
       final packageInfo = await PackageInfo.fromPlatform();
 
+      buildFromLib = packageInfo.buildNumber;
       build = 3.toString();
       abi = info.supportedAbis.first;
     }
-    print('build $build abi $abi');
-    return (build, abi);
+    return (build, abi, buildFromLib);
   }
 }

@@ -39,6 +39,8 @@ app.*.symbols
 app.*.map.json
 dev_keys.json
 prod_keys.json
+*.jks
+*.properties
 
 
 # Android Studio will place build artifacts here

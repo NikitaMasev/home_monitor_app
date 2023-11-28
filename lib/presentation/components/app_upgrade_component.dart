@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:home_monitor/domain/platform_upgrade/platform_upgrade_bloc.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:provider/provider.dart';
-import 'package:r_upgrade/r_upgrade.dart';
 
 class AppUpgradeComponent extends StatefulWidget {
   const AppUpgradeComponent({

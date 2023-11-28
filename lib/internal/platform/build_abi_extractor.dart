@@ -1,25 +1,22 @@
 import 'dart:io' show Platform;
 
 import 'package:device_info_plus/device_info_plus.dart';
-import 'package:package_info_plus/package_info_plus.dart';
+import 'package:home_monitor/internal/platform/build_version.dart';
 
 final class BuildAbiExtractor {
   const BuildAbiExtractor();
 
-  Future<(String, String, String)> getBuildAbi() async {
-    var buildFromLib = '';
+  Future<(String, String)> getBuildAbi() async {
     var build = '';
     var abi = '';
 
     if (Platform.isAndroid) {
       final deviceInfoPlugin = DeviceInfoPlugin();
       final info = await deviceInfoPlugin.androidInfo;
-      final packageInfo = await PackageInfo.fromPlatform();
 
-      buildFromLib = packageInfo.buildNumber;
-      build = 3.toString();
+      build = packageVersion.split('+').last;
       abi = info.supportedAbis.first;
     }
-    return (build, abi, buildFromLib);
+    return (build, abi);
   }
 }

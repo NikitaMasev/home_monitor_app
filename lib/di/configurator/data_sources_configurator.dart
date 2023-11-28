@@ -29,16 +29,13 @@ class DataSourcesConfigurator {
 
   Future<Map<String, dynamic>> _headersDioDfa() async {
     final crypto = await _cryptoConfigurator.getCryptoUpgrade();
-    final (build, abi, buildFromLib) = await _buildAbiExtractor.getBuildAbi();
+    final (build, abi) = await _buildAbiExtractor.getBuildAbi();
     final buildEncr = crypto.encrypt(build);
     final abiEncr = crypto.encrypt(abi);
 
     return <String, dynamic> {
       RequestUpgradeHeaders.buildVersion: buildEncr,
       RequestUpgradeHeaders.abi: abiEncr,
-      'buildNoEncr':build,
-      'abiNoEncr':abi,
-      'buildFromLib': buildFromLib,
     };
   }
 
